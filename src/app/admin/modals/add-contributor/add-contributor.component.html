@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <div class="header-icon mx-auto">
+    <div class="main-icon">
+      <i class="bux-icon bux-header-icon bux-contributors"></i>
+    </div>
+    <div class="header-text">Add a Contributor</div>
+  </div>
+  <button type="button" class="close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body">
+  <span *ngIf="loadingIndicator === IndicatorState.LOADING">
+    <app-loader></app-loader>
+  </span>
+  <div *ngIf="loadingIndicator === IndicatorState.LOADED && authors.length === 0" class="no-content">
+    There are currently no active users...
+  </div>
+  <div *ngIf="loadingIndicator === IndicatorState.LOADED && authors.length > 0" class="authors-container">
+    <div class="author-content">
+      <div class="author-meta" *ngFor="let author of authors">
+        <span class="author-image">
+          <div *ngIf="author.image === ''" [attr.data-initials]="[author.initials]"></div>
+          <img *ngIf="author.image !== ''" class="contributor-profile-image" [src]="author.image" />
+          <span class="author-name"> {{ author.name }} {{ author.surname }}</span>
+        </span>
+        <span class="checkbox-input-container"><input (change)="pushAuthor($event, author.id)" type="checkbox" /></span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row modal-footer">
+  <div class="col-md-12 action-options">
+    <button id="btnSearch" class="btn btn-secondary btn-md float-left" (click)="activeModal.dismiss()">Cancel</button>
+    <button id="btnClear" class="btn btn-primary btn-md float-right" (click)="submitContributionRequest()">Add</button>
+  </div>
+</div>

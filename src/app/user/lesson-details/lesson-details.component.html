@@ -1,0 +1,178 @@
+<div class="row">
+  <div class="col-md-12">
+    <div *ngIf="lesson" class="lesson-container">
+      <div class="side-panel-view-switch" (click)="activateHideStepper()">
+        <div>
+          <i
+            [ngClass]="{
+              'bux-chevron-left': isSideStepperHidden === false,
+              'bux-arrow-right': isSideStepperHidden === true
+            }"
+            class="bux-icon"
+          ></i>
+        </div>
+      </div>
+      <span [ngClass]="{ 'legend-container': lessonType !== 'VIDEO', 'non-legend-container': lessonType === 'VIDEO' }">
+        <span class="legend-item"
+          ><i class="bux-icon bux-tick tick-background"></i><span class="legend-tag">Completed</span></span
+        >
+        <span class="legend-item"
+          ><i class="bux-icon bux-eye-on active-arrow-background"></i
+          ><span class="legend-tag">Current lesson</span></span
+        >
+        <span class="legend-item"
+          ><i class="bux-icon bux-sort-arrow-right arrow-background in-progress-icon-background"></i
+          ><span class="legend-tag">Video in progress</span></span
+        >
+        <span class="legend-item"
+          ><i class="bux-icon bux-sort-arrow-right arrow-background"></i
+          ><span class="legend-tag">Not watched</span></span
+        >
+        <span class="legend-item rating-star" (click)="rateCourses(course)" *ngIf="isLastLesson"
+          ><i class="bux-icon bux-star-filled"></i><span class="legend-tag">Leave a rating</span></span
+        >
+      </span>
+      <div
+        [ngClass]="{ 'author-content': lessonType !== 'VIDEO', 'non-author-content': lessonType === 'VIDEO' }"
+        class="author-content"
+        [class.not-text-header]="lessonType !== 'TEXT'"
+      >
+        <div class="course-info">
+          <div class="course-image-container">
+            <img
+              [ngClass]="{ 'video-course-image': lessonType === 'VIDEO', 'course-image': lessonType !== 'VIDEO' }"
+              [src]="course.image"
+            />
+          </div>
+          <div class="title-container">
+            <span> {{ lesson.title }}</span>
+            <span class="lesson-number"> Lesson {{ currentLessonNumber }}/{{ totalLessons }}</span>
+          </div>
+        </div>
+        <div *ngFor="let author of lesson.authors">
+          <div *ngIf="author.image === ''" [attr.data-initials]="[author.initials]"></div>
+          <img *ngIf="author.image !== ''" [src]="author.image" class="author-profile-image" />
+        </div>
+        <span *ngIf="lessonType === 'VIDEO'" class="author-legend-container">
+          <span class="legend-item"
+            ><i class="bux-icon bux-tick tick-background"></i><span class="legend-tag">Completed</span></span
+          >
+          <span class="legend-item"
+            ><i class="bux-icon bux-eye-on active-arrow-background"></i
+            ><span class="legend-tag">Current lesson</span></span
+          >
+          <span class="legend-item"
+            ><i class="bux-icon bux-sort-arrow-right arrow-background in-progress-icon-background"></i
+            ><span class="legend-tag">Video in progress</span></span
+          >
+          <span class="legend-item"
+            ><i class="bux-icon bux-sort-arrow-right arrow-background"></i
+            ><span class="legend-tag">Not watched</span></span
+          >
+          <span class="legend-item rating-star" (click)="rateCourses(course)" *ngIf="isLastLesson"
+            ><i class="bux-icon bux-star-filled"></i><span class="legend-tag">Leave a rating</span></span
+          >
+        </span>
+      </div>
+      <span *ngIf="lessonType === 'TEXT'">
+        <div class="lesson-markdown" *ngIf="embeddedHTML === ''" [innerHTML]="lesson.markdown"></div>
+        <div class="lesson-markdown" *ngIf="embeddedHTML !== ''" [innerHTML]="embeddedHTML"></div>
+      </span>
+
+      <div *ngIf="lessonType === 'EMBED'">
+        <div class="iframe-container d-none d-lg-block">
+          <iframe
+            [src]="embedUrl"
+            frameborder="0 "
+            scrolling="no "
+            marginheight="0 "
+            marginwidth="0 "
+            width="100% "
+            height="400vh "
+            type="text/html "
+          >
+            <p>Your browser does not support iframes.</p>
+          </iframe>
+        </div>
+      </div>
+      <div *ngIf="lessonType === 'VIDEO'" class="video-container">
+        <video controls width="100% " height="368px " #videoContent (loadedmetadata)="loadVideoMetaData($event, video)">
+          <source [src]="lesson.source" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2 "' />
+          Your browser does not support the video tag.
+        </video>
+        <div class="row video-attachment no-margin">
+          <div class="col-md-6">
+            <span class="lesson-extra">
+              <span *ngFor="let tag of tags">
+                <span class="tag">{{ tag.label | uppercase }}</span>
+              </span>
+              <div class="capturedBookMarks">
+                <ng-container *ngFor="let bookmark of lessonBookMarks">
+                  <span class="bookmark-small"
+                    ><i class="bux-icon bux-bookmark bux-bookmark-small"></i> {{ bookmark.duration }}</span
+                  >
+                </ng-container>
+              </div>
+            </span>
+          </div>
+
+          <div class="col-md-6">
+            <div class="lesson-url">
+              <a [href]="lesson.source" download="{{ lesson.title }} " ngbTooltip="Download ">
+                <i class="bux-icon bux-download bux-download-small"></i>
+              </a>
+            </div>
+            <span (click)="bookmarkPosition()" ngbTooltip="Bookmark " class="bookmark-container">
+              <i class="bux-icon bux-bookmark"></i>
+            </span>
+          </div>
+          <div class="col-md-12">
+            <span class="btn-lesson-left">
+              <span><i class="bux-icon bux-chevron-left"></i></span>
+              <h4 (click)="loadPreviousLesson()">Previous</h4>
+            </span>
+
+            <span class="btn-lesson-right" *ngIf="!isLastLesson && !courseIsComplete">
+              <span> <h4 (click)="checkNextLesson()">Next</h4></span>
+              <span> <i class="bux-icon bux-arrow-right"></i></span>
+            </span>
+
+            <span class="btn-lesson-right" *ngIf="isLastLesson && lessonHasQuiz">
+              <span>
+                <h4 (click)="checkNextLesson()">Next</h4>
+              </span>
+
+              <span><i class="bux-icon bux-arrow-right"></i></span>
+            </span>
+
+            <span class="btn-lesson-right" *ngIf="courseIsComplete && !lessonHasQuiz">
+              <h4 (click)="completeCourse()">Complete</h4>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <span *ngIf="lessonType !== 'VIDEO'" class="btn-lesson-left">
+        <span><i class="bux-icon bux-chevron-left"></i></span>
+        <h4 (click)="loadPreviousLesson()">Previous</h4>
+      </span>
+
+      <span *ngIf="lessonType !== 'VIDEO' && !isLastLesson && !courseIsComplete" class="btn-lesson-right">
+        <span> <h4 (click)="checkNextLesson()">Next</h4></span>
+        <span> <i class="bux-icon bux-arrow-right"></i></span>
+      </span>
+
+      <span *ngIf="lessonType !== 'VIDEO' && isLastLesson && lessonHasQuiz" class="btn-lesson-right">
+        <span>
+          <h4 (click)="checkNextLesson()">Next</h4>
+        </span>
+
+        <span><i class="bux-icon bux-arrow-right"></i></span>
+      </span>
+
+      <span *ngIf="lessonType !== 'VIDEO' && courseIsComplete && !lessonHasQuiz" class="btn-lesson-right">
+        <h4 (click)="completeCourse()">Complete</h4>
+      </span>
+    </div>
+  </div>
+</div>

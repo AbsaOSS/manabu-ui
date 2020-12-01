@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <div class="header-icon mx-auto">
+        <div class="main-icon">
+            <i class="bux-icon bux-header-icon bux-external-link"></i>
+        </div>
+    </div>
+    <button type="button" class="close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body">
+    <div class="body-text mx-auto">
+        Do you want to move<br /><span class="modal-course-title"> "{{lessonBeingMoved.title}}" </span> <br /> to new position?
+    </div>
+    <div class="row">
+        <div class="col-md-12 action-options">
+            <button id="btnSearch" class="btn btn-secondary btn-md float-left" (click)="activeModal.dismiss()">
+          Cancel
+        </button>
+            <button id="btnClear" class="btn btn-primary btn-md float-right" (click)="orderLessons()">
+          Move
+        </button>
+        </div>
+    </div>
+</div>

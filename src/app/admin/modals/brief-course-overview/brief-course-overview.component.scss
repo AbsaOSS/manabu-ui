@@ -1,0 +1,31 @@
+.course-image img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.course-title-and-image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.return-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.course-description p {
+  text-align: center;
+}
+
+.heading-text {
+  font-size: 24px;
+  color: #640032;
+  font-weight: bold;
+}

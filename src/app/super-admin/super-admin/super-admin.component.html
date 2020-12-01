@@ -1,0 +1,137 @@
+<span *ngIf="loadingIndicator === IndicatorState.LOADING">
+  <app-loader></app-loader>
+</span>
+<div
+  *ngIf="adminPermissionRequests.length !== 0 && loadingIndicator === IndicatorState.LOADED"
+  class="admin-requests-container"
+>
+  <h3>Admin access requests</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">ab number</th>
+        <th scope="col">date created</th>
+        <th scope="col">approve</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of adminPermissionRequests; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          {{ request.name }}
+        </td>
+        <td>{{ request.lastName }}</td>
+        <td>{{ request.abNumber }}</td>
+        <td>{{ request.createdAt | date: 'medium' }}</td>
+        <td><i class="bux-icon bux-tick" (click)="approveAdminRequest(request.id)"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div
+  *ngIf="authorContributionRequests.length !== 0 && loadingIndicator === IndicatorState.LOADED"
+  class="admin-requests-container"
+>
+  <h3>Author Contribution Requests</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">ab number</th>
+        <th scope="col">date created</th>
+        <th scope="col">approve</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of authorContributionRequests; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          {{ request.userName }}
+        </td>
+        <td>{{ request.userSurname }}</td>
+        <td>{{ request.abNumber }}</td>
+        <td>{{ request.createdAt | date: 'medium' }}</td>
+        <td>
+          <i
+            class="bux-icon bux-tick"
+            (click)="approveAuthorContributionRequest(request.id, request.userId, request.courseId)"
+          ></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="courses.length !== 0 && loadingIndicator === IndicatorState.LOADED" class="admin-requests-container">
+  <h3>Courses</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Created</th>
+        <th scope="col">Users Watching</th>
+        <th scope="col">Users Completed</th>
+        <th scope="col">Active</th>
+        <th scope="col">Detailed Stats</th>
+        <th scope="col">Course Reviews</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of courses; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          <img [src]="course.image" class="mr-2" style="width: 20px" />
+          {{ course.title }}
+        </td>
+        <td>{{ course.authors[0].name }} {{ course.authors[0].surname }}</td>
+        <td>{{ course.createdAt | date: 'medium' }}</td>
+        <td>{{ course.totalUsersWatching }}</td>
+        <td>{{ course.totalUsersThatCompletedCourse }}</td>
+        <td>
+          <span *ngIf="course.isPublished === 0" class="detail-container">
+            <span class="course-activation icon-alignment">
+              <div (click)="confirmCourseActivation(course)" class="switch">
+                <input type="checkbox" />
+                <span class="slider round"></span>
+              </div>
+            </span>
+          </span>
+
+          <span *ngIf="course.isPublished === 1" class="detail-container">
+            <span class="course-activation icon-alignment">
+              <div (click)="confirmCourseDeactivation(course)" class="switch">
+                <input type="checkbox" checked />
+                <span class="slider round"></span>
+              </div>
+            </span>
+          </span>
+        </td>
+        <td class="detailed-course-statistics-link-container">
+          <i
+            ngbTooltip="View detailed statistics"
+            (click)="viewDetailedCourseStatistics(course)"
+            class="bux-icon bux-external-link"
+          ></i>
+        </td>
+        <td class="course-review-link-container">
+          <i ngbTooltip="View course reviews" (click)="viewCourseReviews(course)" class="bux-icon bux-placeholder"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div
+  *ngIf="courses.length === 0 && adminPermissionRequests.length === 0 && loadingIndicator === IndicatorState.LOADED"
+  class="no-requests-text-container"
+>
+  <span class="no-requests-text">There are currently no courses and admin permission requests.</span>
+</div>

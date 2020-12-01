@@ -1,0 +1,67 @@
+<div class="modal-header">
+  <div class="header-icon mx-auto">
+    <div class="main-icon">
+      <i class="bux-icon bux-header-icon bux-edit"></i>
+    </div>
+    <div class="header-text">Edit Course</div>
+  </div>
+  <button type="button" class="close" (click)="activeModal.dismiss()"></button>
+</div>
+
+<div *ngIf="selectedIcon" class="item-detail-image">
+  <img src="{{ selectedIcon }}" width="58" height="58" />
+</div>
+
+<div *ngIf="!selectedIcon" class="item-detail-image">
+  <img src="{{ course.image }}" width="58" height="58" />
+</div>
+
+<div class="modal-body">
+  <span *ngIf="loadingIndicator === IndicatorState.LOADING">
+    <app-loader></app-loader>
+  </span>
+  <div *ngIf="loadingIndicator === IndicatorState.LOADED && icons.length > 0" class="container image-edit-display">
+    <div class="container image-edit-display">
+      <span (click)="leftScroll()"><i class="bux-icon bux-chevron-left icon-allign"></i></span>
+
+      <div class="row-image-display">
+        <div class="row-image" *ngFor="let icon of icons">
+          <img (click)="iconSelect(icon.source)" src="{{ icon.source }}" width="58" height="58" />
+        </div>
+      </div>
+      <span (click)="rightScroll()"><i class="bux-icon bux-arrow-right icon-allign"></i></span>
+    </div>
+  </div>
+  <div class="container">
+    <input type="text" [(ngModel)]="course.title" required />
+  </div>
+
+  <div class="editor">
+    <ckeditor
+      [(ngModel)]="course.courseAudience"
+      [editor]="Editor"
+      [config]="{
+        placeholder: 'Course pre-requisites...',
+        toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote']
+      }"
+    >
+    </ckeditor>
+  </div>
+
+  <div class="editor">
+    <ckeditor
+      [(ngModel)]="course.coursePreRequisites"
+      [editor]="Editor"
+      [config]="{
+        placeholder: 'Course audience...',
+        toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote']
+      }"
+    >
+    </ckeditor>
+  </div>
+
+  <div class="action-options-container">
+    <button id="btnSearch" class="btn btn-secondary btn-md float-left" (click)="activeModal.dismiss()">Cancel</button>
+    <button id="btnClear" class="btn btn-primary btn-md float-right" (click)="updateCourse(course)">Update</button>
+  </div>
+</div>

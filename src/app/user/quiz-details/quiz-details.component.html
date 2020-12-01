@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col-md-12">
+    <div *ngIf="quiz" class="lesson-container">
+      <div class="author-content">
+        <div class="course-info">
+          <div class="course-image-container"><img class="course-image" [src]="course.image" /></div>
+          <div class="title-container">
+            Question
+          </div>
+        </div>
+        <div class="offset-md-4 col-md-4 answer-container">
+          <span class="question-title">{{ quiz.question }}</span>
+          <div class="questionContainer">
+            <div class="question-header">Select Answer:</div>
+            <div class="quiz-radio-options">
+              <ng-container *ngFor="let item of options; last as last; let i = index">
+                <label class="cb-container">
+                  {{ item.text }}
+                  <input
+                    type="radio"
+                    name="radio"
+                    [value]="item.value"
+                    [(ngModel)]="multipleChoiceSelectedAnswer"
+                    id="{{ 'question-' + i }}"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </ng-container>
+
+              <button (click)="checkRadioAnswer()" style="width: 100%;" class="btn btn-answer btn-primary">
+                Submit
+              </button>
+              <br />
+              <div *ngIf="answerGiven === true" class="alert">
+                <div class="alert-icon-left bux-icon bux-tick-circle bux-icon-green"></div>
+                <div class="alert-message alert-success-text">
+                  Correct!
+                </div>
+                <div class="alert-icon-close bux-icon bux-x-close bux-icon-green"></div>
+              </div>
+              <div *ngIf="answerGiven === false" class="alert alert-danger">
+                <div class="alert-icon-left bux-icon bux-x-circle bux-icon-red"></div>
+                <div class="alert-message alert-danger-text">Incorrect :(</div>
+                <div class="alert-icon-close bux-icon bux-x-close bux-icon-red"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-lesson-previous" (click)="loadPreviousItem()">Previous</button>
+      <button
+        class="btn btn-primary btn-lesson-next"
+        *ngIf="!courseIsComplete"
+        [disabled]="answerGiven !== true || hideNext === true"
+        (click)="loadNextItem()"
+      >
+        Next
+      </button>
+      <button
+        class="btn btn-primary btn-lesson-next"
+        *ngIf="answerGiven && courseIsComplete"
+        (click)="completeCourse()"
+      >
+        Complete
+      </button>
+    </div>
+  </div>
+</div>

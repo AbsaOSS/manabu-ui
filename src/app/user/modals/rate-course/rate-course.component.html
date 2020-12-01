@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <div class="header-icon mx-auto">
+        <p class="text-center header-text">Congratulations</p>
+        <div class="main-icon">
+            <img class="course-img" [src]=" course.image" alt=" ">
+            <br>
+            <p class="text-center "> You have completed {{ course.title }}
+            </p>
+        </div>
+    </div>
+    <button type="button " class="close " (click)="activeModal.dismiss() "></button>
+</div>
+<hr>
+<div>
+    <div class="body-text">
+        <app-rate-course [course]="course"></app-rate-course>
+    </div>
+</div>

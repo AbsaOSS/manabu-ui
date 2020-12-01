@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row menu-options-primary">
+        <div class="column-one">
+            <div class="menu-button" [class.menu-active]="items[0].active" (click)="goToItem(items[0])">
+                <span class="icon-wrapper-spacer">
+          <i class="menu-icon bux-icon bux-edit-filled"></i>
+        </span>
+                <span>{{ items[0].name }}</span>
+            </div>
+        </div>
+        <div class="column-two">
+            <div class="menu-button" [class.menu-active]="items[1].active" (click)="goToItem(items[1])">
+                <span class="icon-wrapper-spacer">
+          <i class="menu-icon bux-icon bux-document-add"></i>
+        </span>
+                <span>{{ items[1].name }}</span>
+            </div>
+        </div>
+        <div class="column-two">
+            <div class="menu-button" [class.menu-active]="items[2].active" (click)="goToItem(items[2])">
+                <span class="icon-wrapper-spacer">
+          <i class="menu-icon bux-icon bux-activity"></i>
+        </span>
+                <span>{{ items[2].name }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row menu-options-secondary">
+        <div class="secondary-column-one">
+            <div class="menu-secondary-button" [class.menu-active]="items[3].active" (click)="goToItem(items[3])">
+                <span class="icon-wrapper-spacer">
+          <i class="menu-icon bux-icon bux-plus-circle"></i>
+        </span>
+                <span>{{ items[3].name }}</span>
+            </div>
+        </div>
+        <div class="secondary-column-two">
+            <div class="menu-secondary-button" [class.menu-active]="items[4].active" (click)="goToItem(items[4])">
+                <span class="icon-wrapper-spacer">
+          <i class="menu-icon bux-icon bux-delete-trash"></i>
+        </span>
+                <span>{{ items[4].name }}</span>
+            </div>
+        </div>
+    </div>
+</div>

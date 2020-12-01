@@ -1,0 +1,87 @@
+<div class="sticky-sidebar">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="stepper-container vertical">
+          <div class="stepper">
+            <ng-container *ngFor="let step of steps">
+              <ng-container [ngSwitch]="getStepClass(step)">
+                <div *ngSwitchCase="'completed'" class="step completed" (click)="stepClicked(step.step)">
+                  <div class="step-inner">
+                    <div class="step-circle completed">
+                      <span><i class="bux-icon bux-tick tick-background"></i></span>
+                    </div>
+                  </div>
+                  <div class="step-content">
+                    <span class="step-label">{{ step.label }}</span>
+                  </div>
+                </div>
+
+                <ng-container *ngSwitchCase="'active'">
+                  <div class="step" [ngClass]="{ 'no-sections': !sections.length }" (click)="stepClicked(step.step)">
+                    <div class="step-inner">
+                      <div class="step-circle active">
+                        <span><i class="bux-icon bux-sort-arrow-right in-progress-icon-background"></i></span>
+                      </div>
+                    </div>
+                    <div class="step-content">
+                      <span class="step-label">{{ step.label }}</span>
+                    </div>
+                  </div>
+
+                  <ng-container *ngFor="let section of sections">
+                    <ng-container [ngSwitch]="getSectionClass(section)">
+                      <div *ngSwitchCase="'active'" class="step active sub-step">
+                        <div class="step-inner">
+                          <div class="sub-step-circle active"></div>
+                        </div>
+                        <div class="sub-step-content">
+                          <span class="sub-step-link" (click)="sectionClicked(step.step, section.id)">{{
+                            section.label
+                          }}</span>
+                        </div>
+                      </div>
+
+                      <div *ngSwitchCase="'inactive'" class="step inactive sub-step">
+                        <div class="step-inner">
+                          <div class="sub-step-circle inactive"></div>
+                        </div>
+                        <div class="sub-step-content">
+                          <span class="sub-step-link" (click)="sectionClicked(step.step, section.id)">{{
+                            section.label
+                          }}</span>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+
+                <div *ngSwitchCase="'inactive'" class="step inactive" (click)="stepClicked(step.step)">
+                  <div class="step-inner">
+                    <div class="step-circle inactive">
+                      <span><i class="bux-icon bux-sort-arrow-right arrow-background"></i></span>
+                    </div>
+                  </div>
+                  <div class="step-content">
+                    <span>{{ step.label }}</span>
+                  </div>
+                </div>
+
+                <div *ngSwitchCase="'current'" class="step current" (click)="stepClicked(step.step)">
+                  <div class="step-inner">
+                    <div class="step-circle current">
+                      <span><i class="bux-icon bux-eye-on active-arrow-background"></i></span>
+                    </div>
+                  </div>
+                  <div class="step-content">
+                    <span>{{ step.label }}</span>
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

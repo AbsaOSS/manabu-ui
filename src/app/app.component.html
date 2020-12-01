@@ -1,0 +1,22 @@
+<span>
+  <app-header></app-header>
+
+  <span
+    [ngClass]='getLayoutClass()'
+  >
+    <div class="row row-main">
+      <div class="content col-md-12">
+        <span>
+          <app-welcome></app-welcome>
+        </span>
+      </div>
+      <app-side-panel class="admin-side-panel">
+        <app-admin-side-panel></app-admin-side-panel>
+      </app-side-panel>
+    </div>
+
+    <app-menu class="admin-view-menu"></app-menu>
+  </span>
+
+  <router-outlet></router-outlet>
+</span>

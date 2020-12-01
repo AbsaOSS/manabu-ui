@@ -1,0 +1,361 @@
+$stepper-active: #af144b;
+$stepper-completed: #af144b;
+$stepper-inactive: #888888;
+$stepper-background: #fff;
+$stepper-bg: transparent;
+
+/* Stepper Styling */
+
+// This stepper is designed for horizontal viewing. It can't handle additional content
+// The Vertical stepper uses this code as a base so be careful when editing it.
+.stepper-container {
+  background-color: $stepper-bg;
+  padding-top: 1em;
+  padding-bottom: 2em;
+  border-radius: 5em;
+  display: flex;
+  justify-content: center;
+}
+
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.step {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  width: 100%;
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    position: relative;
+    // height: 3px;
+    // top: -5px;
+    background-color: #cccccc;
+  }
+  &:before {
+    content: '';
+    display: block;
+    width: 100%;
+    position: relative;
+    height: 3px;
+    top: -5px;
+    background-color: #cccccc;
+  }
+  &:last-child {
+    flex-basis: 70%;
+    &:after {
+      display: none;
+    }
+  }
+  &:first-child {
+    flex-basis: 70%;
+    &:before {
+      display: none;
+    }
+  }
+}
+
+.step.completed {
+  color: white;
+  &:before,
+  &:after {
+    background-color: $stepper-completed;
+  }
+  + .step:not(.active) {
+    &:before {
+      background-color: $stepper-completed;
+    }
+  }
+}
+
+.step.active {
+  color: white;
+  cursor: pointer;
+  &:before,
+  &:after {
+    background-color: #cccccc;
+  }
+  + .step:not(.active) {
+    &:before {
+      background-color: #cccccc;
+    }
+  }
+}
+
+.step.inactive {
+  color: white;
+  &:before,
+  &:after {
+    background-color: #cccccc;
+  }
+  + .step:not(.active) {
+    &:before {
+      background-color: #cccccc;
+    }
+  }
+}
+
+.step-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 1;
+}
+
+.step-circle {
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  margin-right: 8px;
+  justify-content: center;
+  align-items: center;
+  span {
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+  }
+  &.completed {
+    // Completed state
+    margin-right: 8px;
+    margin-top: -2px;
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    span {
+      color: $stepper-completed;
+      .bux-icon {
+        font-size: 14px;
+        padding: 2px;
+        font-weight: 1000;
+      }
+    }
+  }
+  &.active span {
+    // Active state
+    margin-top: -2px;
+  }
+  &.inactive {
+    // Inactive state
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    span {
+      font-size: 14px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      color: #fff;
+    }
+  }
+  &.current {
+    // Inactive state
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    span {
+      font-size: 14px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      color: #fff;
+    }
+  }
+}
+
+.step-circle.active {
+  background: transparent;
+}
+
+.sub-step-circle {
+  margin-left: 8px;
+  margin-top: 8px;
+  height: 8px;
+  width: 8px;
+  border-radius: 8px;
+  background-color: $stepper-completed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Vertical stepper
+// This the bare minimum overrides needed to create the vertical stepper. Everyting you see is necessary
+.vertical {
+  .stepper {
+    flex-direction: column;
+  }
+  .step {
+    position: relative;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    min-height: 64px;
+    &:after {
+      display: inline;
+      width: 2px;
+      position: absolute;
+      height: 100%;
+      left: 0.9em;
+      top: 0.5em;
+      z-index: 0;
+    }
+    &:before {
+      display: none;
+    }
+    &:last-child:after {
+      display: none;
+    }
+    &.completed .step-content {
+      span {
+        color: hsl(0, 8%, 45%);
+      }
+    }
+    &.active {
+      min-height: 64px;
+      .step-content {
+        span {
+          font-size: 14px;
+          font-weight: 600;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1.25;
+          letter-spacing: normal;
+          color: #af144b;
+        }
+      }
+    }
+    &.active.no-sections {
+      min-height: 42px;
+    }
+    &.active .sub-step-content {
+      margin-left: 1.2em;
+      span {
+        font-size: 12px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.33;
+        letter-spacing: normal;
+        color: #870a3c;
+      }
+    }
+    &.inactive .step-content {
+      cursor: pointer;
+      span {
+        font-size: 14px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.43;
+        letter-spacing: normal;
+        color: #9a9595;
+      }
+    }
+    &.inactive .sub-step-content {
+      margin-left: 1.2em;
+      span {
+        font-size: 12px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.33;
+        letter-spacing: normal;
+        color: #9a9595;
+      }
+    }
+  }
+  .sub-step {
+    min-height: 42px;
+    &:hover {
+      .sub-step-circle {
+        background-color: #af144b;
+      }
+      .sub-step-content span {
+        color: #af144b;
+      }
+    }
+  }
+}
+
+.sub-step-link {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.side-left {
+  background-color: #f6f6f6;
+  display: flex;
+  width: 241px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  border-bottom-left-radius: 4px;
+}
+
+.bux-wizard-sidebar {
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  margin: 0px 9px 0px 9px;
+  padding: 0px;
+}
+
+.wizard-content {
+  background-color: #fff;
+  display: flex;
+  width: 100%;
+  border-bottom-right-radius: 4px;
+  padding: 0px 0px 0px 64px;
+  overflow-y: hidden;
+}
+
+.bux-wizard-content {
+  max-height: calc(100vh - 196px);
+  width: 100%;
+  margin: 0px 0px 0px 0px;
+  padding: 0 64px 0 0px;
+  overflow-y: scroll;
+}
+
+.bux-icon-dark-red {
+  color: #870a3c;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+.flex-parent {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin: 30px 0;
+}
+
+.step-label {
+  font-size: 16px;
+  color: hsl(0, 8%, 45%);
+  cursor: pointer;
+}

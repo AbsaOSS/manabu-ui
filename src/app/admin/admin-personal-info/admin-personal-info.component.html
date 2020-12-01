@@ -1,0 +1,213 @@
+<div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center admin-personal-info-area">
+  <p class="admin-personal-info-header">
+    You are viewing the <span class="about-page">My info page</span>. You can view your details and achievements here.
+  </p>
+</div>
+<div class="row">
+  <div class="columnA">
+    <span *ngIf="loadingIndicator === IndicatorState.LOADING">
+      <app-loader></app-loader>
+    </span>
+    <div *ngIf="loadingIndicator === IndicatorState.LOADED" class="admin-personal-info-content-container">
+      <div class="admin-personal-details-container">
+        <div class="profile-card">
+          <div class="upper-profile-card">
+            <div placement="top " ngbTooltip="upload image " class="profile-pic">
+              <span class="profile-image-upper-layer"><i class="bux-icon image-icon"></i></span>
+              <div
+                *ngIf="adminInfo.image === '' && imageFile == undefined"
+                (click)="uploadAdminImage()"
+                [attr.data-initials]="[adminInfo.initials]"
+              ></div>
+              <img
+                class="admin-profile-image"
+                *ngIf="imageFile !== undefined"
+                (click)="uploadAdminImage()"
+                [src]="imageFile"
+              />
+              <img
+                class="admin-profile-image"
+                *ngIf="adminInfo.image !== '' && imageFile === undefined"
+                (click)="uploadAdminImage()"
+                [src]="adminInfo.image"
+              />
+            </div>
+            <div class="profile-meta">
+              <div class="profile-name">{{ adminInfo.name }} {{ adminInfo.surname }}</div>
+              <div class="admin-role">Course Administrator</div>
+            </div>
+          </div>
+          <div class="lower-profile-card">
+            <div class="profile-stats">
+              <div class="profile-quick-stats">
+                {{ numberOfCoursesAdminIsWatching | singleDigit }}
+                <span class="profile-icons" ngbTooltip="Watching ">
+                  <i class="bux-icon bux-eye-on"></i>
+                </span>
+              </div>
+
+              <div class="profile-quick-stats">
+                {{ numberOfCoursesCompletedByAdmin | singleDigit }}
+
+                <span class="profile-icons" ngbTooltip="Watched ">
+                  <i class="bux-icon bux-ribbon-certified"></i>
+                </span>
+              </div>
+
+              <div class="profile-quick-stats">
+                {{ numberOfAdminsFavouriteCourses | singleDigit }}
+
+                <span class="profile-icons" ngbTooltip="Favourites ">
+                  <i class="bux-icon bux-star"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-personal-details">
+          <p class="admin-personal-details-heading">My Details</p>
+
+          <p class="admin-personal-info">
+            <span class="admin-profile-image-upload" (click)="uploadAdminImage()">Update Profile Pic</span>
+          </p>
+
+          <p class="admin-personal-info">
+            <span class="admin-personal-info-label">Email : </span>{{ adminInfo.email }}
+          </p>
+          <span
+            [ngClass]="{
+              'admin-personal-info-url-is-edited-container': adminUrlLinkIsBeingEdited,
+              'admin-personal-info-url-not-edited-container': !adminUrlLinkIsBeingEdited
+            }"
+          >
+            <p class="admin-personal-info-label">Url Link :</p>
+            <span class="admin-url-content-container">
+              <input
+                class="admin-external-bio-input"
+                type="text"
+                placeholder="Url link..."
+                [(ngModel)]="adminInfo.profileUrlLink"
+              />
+              <a [href]="adminInfo.profileUrlLink" class="admin-external-bio">{{
+                adminInfo.abbreviatedProflileUrlLink !== undefined
+                  ? adminInfo.abbreviatedProflileUrlLink
+                  : adminInfo.profileUrlLink
+              }}</a>
+              <span class="update-icon-action" ngbTooltip="edit" (click)="reviewProfileUpdateStatus('BIO', adminInfo)"
+                ><i class="bux-icon bux-edit"></i
+              ></span>
+              <span class="update-icon-action" ngbTooltip="update" (click)="reviewProfileUpdateStatus('BIO', adminInfo)"
+                ><i class="bux-icon bux-plus-circle"></i
+              ></span>
+            </span>
+          </span>
+
+          <span
+            [ngClass]="{
+              'admin-personal-info-about-section-is-edited-container': adminAboutIsBeingEdited,
+              'admin-personal-info-about-section-not-edited-container': !adminAboutIsBeingEdited
+            }"
+          >
+            <span class="admin-personal-info-label">About : </span>
+            <span class="admin-personal-info-about-content-container">
+              <textarea
+                class="admin-about-input"
+                placeholder="About yourself..."
+                [(ngModel)]="adminInfo.aboutAuthor"
+              ></textarea>
+              <p class="admin-about">
+                {{
+                  adminInfo.abbreviatedAboutAuthor !== undefined
+                    ? adminInfo.abbreviatedAboutAuthor
+                    : adminInfo.aboutAuthor
+                }}
+              </p>
+              <span class="update-icon-action" ngbTooltip="edit" (click)="reviewProfileUpdateStatus('ABOUT', adminInfo)"
+                ><i class="bux-icon bux-edit"></i
+              ></span>
+              <span
+                class="update-icon-action"
+                ngbTooltip="update"
+                (click)="reviewProfileUpdateStatus('ABOUT', adminInfo)"
+                ><i class="bux-icon bux-plus-circle"></i
+              ></span>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="columnB">
+    <span *ngIf="loadingIndicator === IndicatorState.LOADING">
+      <app-loader></app-loader>
+    </span>
+    <div *ngIf="loadingIndicator === IndicatorState.LOADED" class="columnB-content-container">
+      <h1 class="header-text">Reviews</h1>
+      <div class="columnBc" *ngFor="let course of courses">
+        <div
+          [ngClass]="{
+            'wrapper-with-course-review-open ': course.showReview,
+            'wrapper-with-course-review-closed': !course.showReview
+          }"
+        >
+          <div class="drop-down-icon-and-course-title-container">
+            <span *ngIf="!course.showReview" class="chevron-icons" (click)="showCourseReview(course)">
+              <i class="bux-icon bux-chevron-down"></i>
+            </span>
+            <span *ngIf="course.showReview" class="chevron-icons" (click)="showCourseReview(course)">
+              <i class="bux-icon bux-chevron-up user-course-stats-open"></i>
+            </span>
+            <span class="course-name">{{ course.title }}</span>
+          </div>
+          <div>
+            <ul class="list-inline course-ratings">
+              <li [ngClass]="{ selected: 5 <= course.rating }">
+                <i class="bux-icon bux-star-filled"></i>
+              </li>
+              <li [ngClass]="{ selected: 4 <= course.rating }">
+                <i class="bux-icon bux-star-filled"></i>
+              </li>
+              <li [ngClass]="{ selected: 3 <= course.rating }">
+                <i class="bux-icon bux-star-filled"></i>
+              </li>
+              <li [ngClass]="{ selected: 2 <= course.rating }">
+                <i class="bux-icon bux-star-filled"></i>
+              </li>
+              <li [ngClass]="{ selected: 1 <= course.rating }">
+                <i class="bux-icon bux-star-filled"></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="reviews-content" *ngIf="opened === course.id && course.showReview">
+          <span class="no-course-reviews" *ngIf="reviews.length == 0">
+            <p>No Reviews</p>
+          </span>
+          <div class="container" *ngFor="let review of reviews">
+            <div class="user-details">{{ review.userName }} {{ review.userSurname }}</div>
+            <div class="comment">{{ review.userComment }}</div>
+            <div class="date">{{ review.date | date }}</div>
+            <ul class="list-inline reviews-ratings">
+              <li [ngClass]="{ selected: 5 <= review.userRating }">
+                <i class="bux-icon bux-star-filled"></i>
+              </li>
+              <li [ngClass]="{ selected: 4 <= review.userRating }">
+                <i class="bux-icon bux-star-filled"></i>
+              </li>
+              <li [ngClass]="{ selected: 3 <= review.userRating }">
+                <i class="bux-icon bux-star-filled"></i>
+              </li>
+              <li [ngClass]="{ selected: 2 <= review.userRating }">
+                <i class="bux-icon bux-star-filled"></i>
+              </li>
+              <li [ngClass]="{ selected: 1 <= review.userRating }">
+                <i class="bux-icon bux-star-filled"></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

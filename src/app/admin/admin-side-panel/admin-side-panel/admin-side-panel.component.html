@@ -1,0 +1,105 @@
+<span *ngIf="loadingIndicator === IndicatorState.LOADING">
+  <app-loader></app-loader>
+</span>
+<div *ngIf="loadingIndicator === IndicatorState.LOADED && !profile" class="no-content">
+  Admin info is currently unavailable
+</div>
+<span *ngIf="profile">
+  <div class="profile-card">
+    <div class="upper-profile-card">
+      <div class="profile-pic">
+        <div *ngIf="profile.user.image === ''" [attr.data-initials]="[profile.user.initials]"></div>
+        <img *ngIf="profile.user.image !== ''" class="admin-profile-image" [src]="profile.user.image" />
+      </div>
+      <div class="profile-meta">
+        <div class="profile-name">{{ profile?.user.name }} {{ profile?.user.surname }}</div>
+        <div class="admin-role">Course Administrator</div>
+      </div>
+      <i
+        placement="left"
+        ngbTooltip="view bio"
+        class="bux-icon bux-menu-meatball"
+        (click)="viewAdminPersonalProfile()"
+      ></i>
+    </div>
+    <div class="lower-profile-card">
+      <div class="profile-stats">
+        <div class="profile-quick-stats">
+          {{ profile?.numberOfPeopleWhoAreWatchingCoursesByThisAuthor | singleDigit }}
+          <span class="profile-icons" ngbTooltip="Watching">
+            <i class="bux-icon bux-eye-on"></i>
+          </span>
+        </div>
+
+        <div class="profile-quick-stats">
+          {{ profile?.numberOfPeopleWhoCompletedCoursesByThisAuthor | singleDigit }}
+
+          <span class="profile-icons" ngbTooltip="Watched">
+            <i class="bux-icon bux-ribbon-certified"></i>
+          </span>
+        </div>
+
+        <div class="profile-quick-stats">
+          {{ profile?.numberOfFavouriteCoursesForAuthor | singleDigit }}
+
+          <span class="profile-icons" ngbTooltip="Favourites">
+            <i class="bux-icon bux-star"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="courseItems.length > 0" class="authored-courses-heading">My courses</div>
+
+  <div *ngIf="courseItems.length > 0" class="authored-courses-card">
+    <div class="margin-container" *ngFor="let course of courseItems">
+      <div class="authored-courses-card-course-container">
+        <img src="{{ course.image }}" />
+        <div class="course-meta">
+          <div class="course-title">{{ course.title }}</div>
+          <div class="last-edited-date">{{ course.updatedAt | date: 'fullDate' }}</div>
+        </div>
+        <div class="course-panel-icons">
+          <span class="edit-icon"><i class="bux-icon bux-edit" ngbTooltip="Edit"></i></span>
+          <span class="more-options-icon" ngbTooltip="More Options"><i class="bux-icon bux-plus-circle"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="courseItems.length > 0 && showGraph" class="quick-stats-heading">Course statistics</div>
+  <div *ngIf="courseItems.length > 0 && showGraph" class="quick-stats-card">
+    <div class="quick-stats-graph">
+      <ngx-charts-bar-vertical-stacked
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="graphDisplayValues"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [showGridLines]="showGridLines"
+        [animations]="animations"
+        [trimYAxisTicks]="true"
+        [noBarWhenZero]="true"
+      >
+      </ngx-charts-bar-vertical-stacked>
+      <div
+        [ngClass]="{
+          'image-legend-container-1': courseLength === 1,
+          'image-legend-container-2': courseLength === 2,
+          'image-legend-container-3': courseLength === 3,
+          'image-legend-container-4': courseLength === 4,
+          'image-legend-container-5': courseLength > 4
+        }"
+      >
+        <span *ngFor="let course of courseItems" class="image-legend-holder">
+          <img class="image-legend" [src]="course.image" />
+        </span>
+        <div class="stats-page-link">
+          <i ngbTooltip="Visit statistics page" (click)="viewCourseStats()" class="bux-icon bux-external-link"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</span>

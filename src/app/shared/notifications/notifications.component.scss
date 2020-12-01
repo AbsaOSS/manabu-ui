@@ -1,0 +1,107 @@
+.close {
+  margin: 6px;
+}
+
+.no-content {
+  margin: 24px;
+  color: #870a3c;
+  text-align: center;
+}
+
+.course-contribution-request-tracking-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: auto;
+  padding: 8px;
+  .course-contribution-request-tracking-content {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+}
+
+.course-contribution-request-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: auto;
+  padding: 8px;
+  .course-contribution-request-content {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+}
+
+.pending-indicator {
+  height: 16px;
+  width: 16px;
+  margin-top: 4px;
+  margin-left: 4px;
+  background-color: #f28f06;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.rejected-indicator {
+  height: 16px;
+  width: 16px;
+  margin-top: 4px;
+  margin-left: 4px;
+  background-color: #f52d28;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.accepted-indicator {
+  height: 16px;
+  width: 16px;
+  margin-top: 4px;
+  margin-left: 4px;
+  background-color: #59bf75;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.course-status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.label-text {
+  color: #9a9595;
+}
+
+.action-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 8px;
+}
+
+.course-title {
+  color: #870a3c;
+  cursor: pointer;
+}
+
+.course-title:hover {
+  color: #640032;
+  text-decoration: underline;
+}
+
+:host ::ng-deep .tabset1 a.nav-link {
+  color: #640032;
+}
+
+:host ::ng-deep .tabset1 a.nav-link.active {
+  color: #787272;
+  font-weight: bold;
+}
+
+.course-contribution-request-tracking-content p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

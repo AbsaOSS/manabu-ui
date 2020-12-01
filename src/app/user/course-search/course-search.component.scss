@@ -1,0 +1,132 @@
+.search-input {
+  border-radius: 24px;
+  height: 48px;
+  border: 1px solid #888888;
+  padding-left: 16px;
+}
+
+.user-search-area {
+  display: flex;
+}
+
+.user-search-icon {
+  display: flex;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  background: #af144b;
+  border-radius: 50%;
+  justify-content: center;
+  color: white;
+  margin-left: -46px;
+}
+
+.user-button-icon {
+  background: #af144b;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: white;
+  width: 32px;
+  height: 36px;
+  border: 2px solid #fff;
+  z-index: 100;
+  width: 36px;
+}
+
+.user-button-icon-alt {
+  background: #f5a538;
+}
+
+.user-icon-button-text {
+  background: #af144b;
+  border-radius: 100px;
+  color: white;
+  font-size: 12px;
+  width: 260px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -28px;
+}
+
+.user-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.user-button-container-text:hover {
+  .user-icon-button-text {
+    background: #640032;
+    cursor: pointer;
+    width: 320px;
+    transition: width 0.5s;
+  }
+  .user-button-icon {
+    background: #640032;
+    cursor: pointer;
+  }
+}
+
+.user-icon-button-text-alt {
+  background: #f5a538;
+}
+.user-button-container-text {
+  display: flex;
+  align-items: center;
+  margin-top: 22px;
+}
+
+.container-break {
+  padding-bottom: 24px;
+  border-bottom: 1px solid #ddd;
+}
+
+.course-precursor {
+  color: #888888;
+  padding-top: 16px;
+}
+
+.user-search-results {
+  border: 1px solid hsl(0, 0%, 70%);
+  border-radius: 24px;
+  border-top: none;
+  padding-bottom: 20px;
+  background: #f5f5f5;
+}
+
+.user-name {
+  font-weight: bold;
+  line-height: 16px;
+  letter-spacing: 0;
+  font-size: 18px;
+  color: #870a3c;
+}
+
+.odd,
+.even {
+  padding-top: 12px;
+}
+
+.odd:hover,
+.even:hover {
+  color: #870a3c;
+}
+
+.even {
+  background: hsl(0, 0%, 92%);
+}
+
+.admin-permission-request-container {
+  padding-top: 16px;
+  margin-left: 16px;
+
+  .admin-permission-request-link {
+    color: #870a3c;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}

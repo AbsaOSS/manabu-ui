@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="mx-auto text-center user-welcome-area">
+    <app-side-panel>
+      <app-user-side-panel></app-user-side-panel>
+    </app-side-panel>
+    <p class="user-welcome-header mt-3">
+      Welcome back&nbsp;<span class="user-name">{{ userName }}</span
+      >. What would you like to do?
+    </p>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div [class.user-search-results]="searchCourseTitle.value">
+          <div class="user-search-area">
+            <input
+              class="form-control search-input"
+              placeholder="Find something to learn..."
+              [formControl]="searchCourseTitle"
+            />
+            <span class="user-search-icon"><i class="bux-icon bux-search"></i> </span>
+          </div>
+          <div *ngIf="searchCourseTitle.value" class="searchList">
+            <span *ngIf="coursesLoading">Loading</span>
+            <ng-container *ngFor="let course of courses | async; let index = index; let odd = odd; let even = even">
+              <a
+                class="dropdown-item"
+                [ngClass]="{ odd: odd, even: even }"
+                [routerLink]="['/user/courseDetails', course.id]"
+                >{{ course.title }}</a
+              >
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="user-button-container">
+          <div class="user-button-container-text" (click)="getCourseForContinuation()">
+            <span class="user-button-icon"><i class="bux-icon bux-validation bux-icon-button"></i> </span>
+            <span class="user-icon-button-text user-icon-button-text">Continue where I left off...</span>
+          </div>
+          <div class="user-button-container-text" (click)="getLatestCourse()">
+            <span class="user-button-icon"><i class="bux-icon bux-action-required bux-icon-button"></i> </span>
+            <span class="user-icon-button-text">Try something new...</span>
+          </div>
+          <div class="user-button-container-text" (click)="getRandomCourse()">
+            <span class="user-button-icon user-button-icon-alt"
+              ><i class="bux-icon bux-help-circle bux-icon-button"></i>
+            </span>
+            <span class="user-icon-button-text user-icon-button-text-alt">Try something random now!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="userRole === 'manabu-user'" class="admin-permission-request-container">
+    Want to create a course ? - click
+    <span class="admin-permission-request-link" (click)="requestAdminPermissions()">here</span> to request access
+  </div>
+  <div class="container-break"></div>
+
+  <div class="container course-precursor">
+    <div>Courses:</div>
+  </div>
+  <app-user-courses></app-user-courses>
+</div>

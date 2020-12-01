@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <div class="header-icon mx-auto">
+    <div class="main-icon">
+      <i class="bux-icon bux-header-icon bux-info-circle"></i>
+    </div>
+    <div class="header-text">Course Reviews</div>
+  </div>
+  <button type="button" class="close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="reviews-content">
+  <span class="no-course-reviews" *ngIf="reviews.length == 0">
+    <p>No Reviews</p>
+  </span>
+  <div class="body-text mx-auto">
+    <div class="container" *ngFor="let review of reviews">
+      <div class="user-details">{{ review.userName }} {{ review.userSurname }}</div>
+      <div class="comment">{{ review.userComment }}</div>
+      <div class="date">{{ review.date | date }}</div>
+      <ul class="list-inline reviews-ratings">
+        <li [ngClass]="{ selected: 5 <= review.userRating }">
+          <i class="bux-icon bux-star-filled"></i>
+        </li>
+        <li [ngClass]="{ selected: 4 <= review.userRating }">
+          <i class="bux-icon bux-star-filled"></i>
+        </li>
+        <li [ngClass]="{ selected: 3 <= review.userRating }">
+          <i class="bux-icon bux-star-filled"></i>
+        </li>
+        <li [ngClass]="{ selected: 2 <= review.userRating }">
+          <i class="bux-icon bux-star-filled"></i>
+        </li>
+        <li [ngClass]="{ selected: 1 <= review.userRating }">
+          <i class="bux-icon bux-star-filled"></i>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

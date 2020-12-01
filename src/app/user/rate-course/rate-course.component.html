@@ -1,0 +1,45 @@
+<div class="modal-body">
+    <div class="text-center">
+        <div class="row">
+            <div class="col-sm-12">
+                <br />
+                <p class="course-title">Please provide a rating </p>
+                <p>{{ selectedValue }}/5</p>
+
+                <ul class="list-inline rating-list">
+                    <li (click)="countStar(5)" [ngClass]="{ selected: 5 <= selectedValue }">
+                        <i class="bux-icon bux-star-filled"></i>
+                    </li>
+                    <li (click)="countStar(4)" [ngClass]="{ selected: 4 <= selectedValue }">
+                        <i class="bux-icon bux-star-filled"></i>
+                    </li>
+                    <li (click)="countStar(3)" [ngClass]="{ selected: 3 <= selectedValue }">
+                        <i class="bux-icon bux-star-filled"></i>
+                    </li>
+                    <li (click)="countStar(2)" [ngClass]="{ selected: 2 <= selectedValue }">
+                        <i class="bux-icon bux-star-filled"></i>
+                    </li>
+                    <li (click)="countStar(1)" [ngClass]="{ selected: 1 <= selectedValue }">
+                        <i class="bux-icon bux-star-filled"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="comment-box">
+            <textarea class="comment" [(ngModel)]="userComments" placeholder="Your feedback"></textarea>
+        </div>
+        <br>
+        <div class="row ">
+            <div class="col-md-12 action-options ">
+                <button id="btnSearch " class="btn btn-secondary btn-md float-left " (click)="activeModal.dismiss() ">
+          Back
+        </button>
+                <button id="btnClear " class="btn btn-primary btn-md float-right " (click)="rateCourse(course) ">
+          Submit
+        </button>
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+</div>

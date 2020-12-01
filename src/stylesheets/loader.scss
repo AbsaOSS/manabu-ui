@@ -1,0 +1,166 @@
+// loading spinner
+
+.manabu-loader {
+  position: relative;
+  margin: 0 auto;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation-fill-mode: forwards;
+  animation: rotate 1200ms linear infinite;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.loader-quad {
+  position: absolute;
+  display: block;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  animation-fill-mode: forwards;
+  &-grey {
+    border-left-color: #c0c0c0;
+  }
+  &-default {
+    border-left-color: #af144b;
+  }
+}
+
+.loader-quad-1 {
+  animation: rotate1 1200ms linear infinite;
+}
+.loader-quad-2 {
+  animation: rotate2 1200ms linear infinite;
+}
+.loader-quad-3 {
+  animation: rotate3 1200ms linear infinite;
+}
+.loader-quad-4 {
+  animation: rotate4 1200ms linear infinite;
+}
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+@keyframes rotate1 {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  12.5% {
+    transform: rotateZ(90deg);
+  }
+  25% {
+    transform: rotateZ(180deg);
+  }
+  37.5% {
+    transform: rotateZ(270deg);
+  }
+  50% {
+    transform: rotateZ(310deg);
+  }
+  62.5% {
+    transform: rotateZ(330deg);
+  }
+  75% {
+    transform: rotateZ(340deg);
+  }
+  87.5% {
+    transform: rotateZ(350deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+@keyframes rotate2 {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  12.5% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(90deg);
+  }
+  37.5% {
+    transform: rotateZ(180deg);
+  }
+  50% {
+    transform: rotateZ(270deg);
+  }
+  62.5% {
+    transform: rotateZ(330deg);
+  }
+  75% {
+    transform: rotateZ(340deg);
+  }
+  87.5% {
+    transform: rotateZ(350deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+@keyframes rotate3 {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  12.5% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(20deg);
+  }
+  37.5% {
+    transform: rotateZ(90deg);
+  }
+  50% {
+    transform: rotateZ(180deg);
+  }
+  62.5% {
+    transform: rotateZ(270deg);
+  }
+  75% {
+    transform: rotateZ(340deg);
+  }
+  87.5% {
+    transform: rotateZ(350deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+@keyframes rotate4 {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  12.5% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(20deg);
+  }
+  32.5% {
+    transform: rotateZ(30deg);
+  }
+  50% {
+    transform: rotateZ(90deg);
+  }
+  62.5% {
+    transform: rotateZ(180deg);
+  }
+  75% {
+    transform: rotateZ(270deg);
+  }
+  87.5% {
+    transform: rotateZ(350deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}

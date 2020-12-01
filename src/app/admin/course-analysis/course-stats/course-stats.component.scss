@@ -1,0 +1,131 @@
+.detail-container {
+  background-color: #f4f3f3;
+}
+
+.table {
+  margin-left: 53px;
+  margin-right: 53px;
+  border-bottom: 2px solid #dee2e6;
+  width: 100%;
+}
+
+.table td {
+  border-top: none;
+}
+
+.in-progress-user-status-indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #f5a538;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.complete-user-status-indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #640032;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+.not-started-user-status-indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #cccccc;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+.in-progress-user-status-indicator + .user-status {
+  font-style: italic;
+  color: #555555;
+  font-family: SourceSansPro-ExtraLight;
+}
+
+.complete-user-status-indicator + .user-status {
+  color: #9a9595;
+  font-family: SourceSansPro-ExtraLight;
+}
+
+.not-started-user-status-indicator + .user-status {
+  color: #9a9595;
+  font-family: SourceSansPro-ExtraLight;
+}
+
+th {
+  color: #9a9595;
+  font-family: SourceSansPro-Light;
+}
+
+.user-name {
+  font-style: bold;
+}
+
+.action-item-icons {
+  margin-right: 5px;
+  font-size: 15px;
+}
+
+.ngb-progressbar {
+  margin-top: 10px;
+}
+
+.add-user-manually-icon {
+  margin-left: 10px;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.add-user-manually-text {
+  line-height: 20px;
+}
+
+.status {
+  font-style: bold;
+}
+
+thead tr :nth-child(1) {
+  color: #555555;
+  font-style: bold;
+}
+
+.progress-bar {
+  background-color: grey;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 12px;
+  margin-top: 6px;
+}
+
+.completed {
+  height: auto;
+  background-color: #af144b;
+  font-size: 0.5rem;
+  margin: 0;
+}
+
+.not-started {
+  height: auto;
+  background-color: #cccccc;
+  width: 100%;
+  font-size: 0.5rem;
+  margin: 0;
+}
+
+.no-active-users {
+  background-color: #f4f3f3;
+  margin: 0;
+  color: #870a3c;
+  padding: 20px;
+  text-align: center;
+}
+
+.date-font {
+  color: #888888;
+  font-family: SourceSansPro-Light;
+}

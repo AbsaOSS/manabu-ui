@@ -1,0 +1,164 @@
+<div class="modal-header">
+  <div class="header-icon mx-auto">
+    <div class="main-icon">
+      <i class="bux-icon bux-header-icon bux-quizz"></i>
+    </div>
+    <div class="header-text">Add a Quiz</div>
+  </div>
+  <button type="button" class="close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body" *ngIf="quizReady">
+  <span class="step1" *ngIf="selectedQuiz.step === quizSteps.Step1">
+    <div class="quiz-type-container">
+      <div class="label-select label-quiz">Select Question Type:</div>
+      <div class="quiz-radio-options">
+        <label class="cb-container"
+          ><input type="radio" value="1" name="rquizType" (change)="selectQuizType('1')" /> True / False
+          <span class="checkmark"></span>
+        </label>
+        <label class="cb-container"
+          ><input type="radio" value="2" name="rquizType" (change)="selectQuizType('2')" /> Multiple Choice
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 action-options">
+        <button id="btnSearch" class="btn btn-secondary btn-md float-left" (click)="activeModal.dismiss()">
+          Cancel
+        </button>
+        <button
+          id="btnClear"
+          class="btn btn-primary btn-md float-right"
+          (click)="gotoStep2()"
+          [class.disabled]="selectedQuiz.type === ''"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </span>
+  <span class="step2" *ngIf="selectedQuiz.step === quizSteps.Step2Bool">
+    <input
+      [(ngModel)]="selectedQuiz.boolStep.question"
+      class="form-control"
+      placeholder="Provide a question"
+      required
+    />
+
+    <div class="quiz-type-container">
+      <div class="label-select label-quiz">Answer to the question</div>
+      <div class="quiz-radio-answers">
+        <label class="cb-container"
+          ><input type="radio" value="1" name="rquizAnswer" (change)="selectedBoolOption('true')" /> True
+          <span class="checkmark"></span>
+        </label>
+        <label class="cb-container"
+          ><input type="radio" value="2" name="rquizAnswer" (change)="selectedBoolOption('false')" /> False
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 action-options">
+        <button id="btnSearch" class="btn btn-secondary btn-md float-left" (click)="gotoStep1()">Back</button>
+        <button
+          id="btnClear"
+          class="btn btn-primary btn-md float-right"
+          (click)="saveTrueOrFalseQuestion()"
+          [class.disabled]="selectedQuiz.boolStep.selection === '' || selectedQuiz.boolStep.question === ''"
+        >
+          Create
+        </button>
+      </div>
+    </div>
+  </span>
+  <span class="step2" *ngIf="selectedQuiz.step === quizSteps.Step2Multi">
+    <input
+      [(ngModel)]="selectedQuiz.multiStep.question"
+      class="form-control"
+      placeholder="Provide a question"
+      required
+    />
+    <br />
+    <div class="quiz-radio-options">
+      <div class="option-list">
+        <div class="label-select">Options for the question:</div>
+        <div class="multi-option">
+          Option a)
+          <div>
+            <input
+              [(ngModel)]="selectedQuiz.multiStep.option1"
+              (ngModelChange)="selectedQuiz.multiStep.option1 = $event"
+              class="form-control multi-option"
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="multi-option">
+          Option b)
+          <div>
+            <input
+              [(ngModel)]="selectedQuiz.multiStep.option2"
+              (ngModelChange)="selectedQuiz.multiStep.option2 = $event"
+              class="form-control multi-option"
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="multi-option">
+          Option c)
+          <div>
+            <input
+              [(ngModel)]="selectedQuiz.multiStep.option3"
+              (ngModelChange)="selectedQuiz.multiStep.option3 = $event"
+              class="form-control multi-option"
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="multi-option">
+          Option d)
+          <div>
+            <input
+              [(ngModel)]="selectedQuiz.multiStep.option4"
+              (ngModelChange)="selectedQuiz.multiStep.option4 = $event"
+              class="form-control multi-option"
+              type="text"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="answer-multiple">
+        <div>The correct answer is:</div>
+        <div class="select">
+          <select class="select-css" type="string" [(ngModel)]="selectedQuiz.multiStep.selection">
+            <option [ngValue]="selectedQuiz.multiStep.option1">{{ selectedQuiz.multiStep.option1 }}</option>
+            <option [ngValue]="selectedQuiz.multiStep.option2">{{ selectedQuiz.multiStep.option2 }}</option>
+            <option [ngValue]="selectedQuiz.multiStep.option3">{{ selectedQuiz.multiStep.option3 }}</option>
+            <option [ngValue]="selectedQuiz.multiStep.option4">{{ selectedQuiz.multiStep.option4 }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 action-options">
+        <button id="btnSearch" class="btn btn-secondary btn-md float-left" (click)="gotoStep1()">Back</button>
+        <button
+          id="btnClear"
+          class="btn btn-primary btn-md float-right"
+          (click)="saveMultipleChoiceQuestion()"
+          [class.disabled]="
+            selectedQuiz.multiStep.option1 === '' ||
+            selectedQuiz.multiStep.option2 === '' ||
+            selectedQuiz.multiStep.question === '' ||
+            selectedQuiz.multiStep.selection === ''
+          "
+        >
+          Create
+        </button>
+      </div>
+    </div>
+  </span>
+</div>

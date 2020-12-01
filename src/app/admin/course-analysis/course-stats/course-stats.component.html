@@ -1,0 +1,59 @@
+<span *ngIf="loadingIndicator === IndicatorState.LOADING">
+  <app-loader></app-loader>
+</span>
+<div *ngIf="users.length === 0" class="no-active-users">There are no users enrolled for this course.</div>
+<div class="row detail-container">
+  <table
+    *ngIf="loadingIndicator === IndicatorState.LOADED && users.length > 0"
+    class="row detail-container"
+    class="table"
+  >
+    <thead>
+      <tr>
+        <th scope="col">Status</th>
+        <th scope="col">User Name</th>
+        <th scope="col">User Surname</th>
+        <th scope="col">Enrolled</th>
+        <th scope="col">Last Access</th>
+        <th scope="col">Progress</th>
+        <th scope="col">Quizzes</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td class="row">
+          <div
+            [ngClass]="{
+              'in-progress-user-status-indicator': user.status === 'In progress',
+              'complete-user-status-indicator': user.status === 'Complete',
+              'not-started-user-status-indicator': user.status === 'Not started'
+            }"
+          ></div>
+          <span class="user-status">{{ user.status }}</span>
+        </td>
+        <td class="user-name">{{ user.name }}</td>
+        <td class="user-name">{{ user.surname }}</td>
+        <td class="date-font">{{ user.enrolled | date: 'medium' }}</td>
+        <td class="date-font">{{ user.lastAccess | date: 'medium' }}</td>
+        <td>
+          <div class="progress-bar">
+            <span [style.width.%]="[user.completedLessonsPercentage]" class="completed"
+              ><span *ngIf="user.completedLessonsPercentage > 10">{{ user.completedLessonsPercentage }}%</span></span
+            >
+            <span [style.width.%]="[user.incompleteLessonsPercentage]" class="not-started"
+              ><span *ngIf="user.status === 'Not started'">0% Completed</span></span
+            >
+          </div>
+        </td>
+        <td>0/{{ user.numberOfQuizzes }}</td>
+        <td>
+          <span><i class="bux-icon bux-info-circle action-item-icons"></i></span
+          ><span><i class="bux-icon bux-email action-item-icons"></i></span
+          ><i class="bux-icon bux-action-required action-item-icons"></i><span></span
+          ><span><i class="bux-icon bux-delete-trash action-item-icons"></i></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

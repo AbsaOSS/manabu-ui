@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <div class="header-icon mx-auto">
+    <div class="main-icon">
+      <i class="bux-icon bux-header-icon bux-download"></i>
+    </div>
+    <div class="header-text">Download</div>
+  </div>
+  <button type="button" class="close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="body-text mx-auto">
+      Are you sure you want to download <br />
+      <span class="modal-course-title">"{{ lessonName }}"</span>
+    </div>
+    <div class="col-md-12 action-options">
+      <button id="btnSearch" class="btn btn-secondary btn-md float-left" (click)="activeModal.dismiss()">Cancel</button>
+      <a [href]="lessonSource" download="{{ lessonName }}">
+        <button
+          id=" btnClear "
+          [disabled]="lessonSource == ''"
+          class="btn btn-primary btn-md float-right"
+          download="lessonName "
+        >
+          Download
+        </button>
+      </a>
+    </div>
+  </div>
+</div>

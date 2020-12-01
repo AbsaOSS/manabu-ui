@@ -1,0 +1,153 @@
+.no-active-users {
+  margin: 0;
+  color: #870a3c;
+  padding: 20px;
+  text-align: center;
+  height: 100%;
+}
+
+.detail-container {
+  background-color: #f4f3f3;
+}
+
+.table {
+  margin-left: 54px;
+  margin-right: 54px;
+  border-bottom: 2px solid #dee2e6;
+  width: 100%;
+}
+
+.table td {
+  border-top: none;
+}
+
+.in-progress-user-status-indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #f5a538;
+  margin-top: 6px;
+  margin-right: 6px;
+}
+
+.complete-user-status-indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #640032;
+  margin-top: 6px;
+  margin-right: 10px;
+}
+
+.not-started-user-status-indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #cccccc;
+  margin-top: 6px;
+  margin-right: 10px;
+}
+
+.in-progress-user-status-indicator + .user-status {
+  font-style: italic;
+  color: #555555;
+  font-family: SourceSansPro-ExtraLight;
+}
+
+.complete-user-status-indicator + .user-status {
+  color: #9a9595;
+  font-family: SourceSansPro-ExtraLight;
+}
+
+.not-started-user-status-indicator + .user-status {
+  color: #9a9595;
+  font-family: SourceSansPro-ExtraLight;
+}
+
+th {
+  color: #9a9595;
+  font-family: SourceSansPro-Light;
+}
+
+.user-name {
+  font-style: bold;
+}
+
+.action-item-icons {
+  margin-right: 6px;
+  font-size: 16px;
+}
+
+.ngb-progressbar {
+  margin-top: 10px;
+}
+
+.status {
+  font-style: bold;
+}
+
+thead tr :nth-child(1) {
+  color: #555555;
+  font-style: bold;
+}
+
+.progress-bar {
+  background-color: grey;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 12px;
+  margin-top: 6px;
+}
+
+.completed {
+  height: auto;
+  background-color: #af144b;
+  font-size: 0.6rem;
+  margin: 0;
+}
+
+.not-started {
+  height: auto;
+  background-color: #cccccc;
+  width: 100%;
+  font-size: 0.6rem;
+  margin: 0;
+}
+
+.no-active-users {
+  background-color: #f4f3f3;
+  margin: 0;
+  color: #870a3c;
+  padding: 20px;
+  text-align: center;
+}
+
+.date-font {
+  color: #888888;
+  font-family: SourceSansPro-Light;
+}
+
+::ng-deep .stats-modal .modal-dialog {
+  min-width: 100%;
+  width: fit-content;
+}
+
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.course-statistics-main-content-container {
+  margin-bottom: 0px;
+}
+
+.close {
+  margin-bottom: 10px;
+}
+
+.detailed-course-analysis-table-heading {
+  text-align: center;
+  margin-bottom: 16px;
+  color: #af144b;
+}

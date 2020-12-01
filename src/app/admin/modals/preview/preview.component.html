@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <div class="header-icon mx-auto">
+        <div class="main-icon">
+            <i class="bux-icon bux-header-icon bux-eye-on"></i>
+        </div>
+        <div class="header-text">Preview Content</div>
+    </div>
+    <button type="button" class="close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="body-text mx-auto">
+            Would you like to open the content in user mode?
+        </div>
+        <div class="col-md-12 action-options">
+            <button id="btnSearch" class="btn btn-secondary btn-md float-left" (click)="activeModal.dismiss()">
+        Cancel
+      </button>
+            <button id="btnClear" (click)="preview(courseId)" class="btn btn-primary btn-md float-right">
+        Preview
+      </button>
+        </div>
+    </div>
+</div>

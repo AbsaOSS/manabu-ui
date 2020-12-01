@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <div class="header-icon mx-auto">
+        <div class="main-icon">
+            <i class="bux-icon bux-header-icon bux-tick-circle"></i>
+        </div>
+        <div class="header-text">Activate Course</div>
+    </div>
+    <button type="button" class="close" (click)="refreshPage()"></button>
+</div>
+<div class="modal-body">
+    <div class="body-text mx-auto">
+        Are you sure you want to activate <br />
+        <span class="modal-course-title">"{{ course.title }} "</span>
+    </div>
+    <div class="row">
+        <div class="col-md-12 action-options">
+            <button id="btnSearch" class="btn btn-secondary btn-md float-left" (click)="refreshPage()">
+        Cancel
+      </button>
+            <button id="btnClear" class="btn btn-primary btn-md float-right" (click)="activateCourse()">
+        Activate
+      </button>
+        </div>
+    </div>
+</div>

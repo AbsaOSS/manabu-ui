@@ -1,0 +1,71 @@
+<div *ngIf="loadingIndicator === IndicatorState.LOADED && !courses" class="no-content">
+    There are currently no courses
+</div>
+<div class="row">
+    <ul *ngFor="let course of courses" class="course-container">
+        <li class="course-item">
+            <span *ngIf="!course.showStats" class="chevron-icons" placement="right " (click)="showCourseStats(course) ">
+        <i class="bux-icon bux-chevron-down"></i>
+      </span>
+            <span *ngIf="course.showStats" placement="right " class="chevron-icons" (click)="showCourseStats(course) ">
+        <i class="bux-icon bux-chevron-up user-course-stats-open"></i>
+      </span>
+            <span class="item-detail item-detail-icon-front"> </span>
+
+            <span class="user-stats-item-detail user-stats-item-detail-image">
+        <img class="user-stats-item-detail-image center-image" src="{{course.image}}" alt="" />
+
+        <div class="chart-wrapper">
+          <canvas
+            baseChart
+            [data]="[course.watched,course.watching,course.notStarted]"
+            [labels]="doughnutChartLabels"
+            [chartType]="doughnutChartType"
+            [colors]="donutColors"
+            [options]="chartOptions">
+          </canvas>
+          <canvas class="canvas"
+          baseChart
+          [data]="[100]"
+          [labels]="doughnutChartLabel"
+          [chartType]="doughnutChartType"
+          [colors]="donutColor"
+          [options]="chartOptions">
+        </canvas>
+        </div>
+      </span>
+
+            <span class="user-stats-item-detail-title user-stats-item-detail">
+        <div class="course-title">{{ course.title }}</div>
+        <div class="last-edited-date">
+          Last edited {{ course.updatedAt | date: 'fullDate' }}
+        </div>
+        <div></div>
+      </span>
+            <span class="item-detail item-detail-tag-list user-stats-item-detail-tag-list user-stats-item-detail">
+        <span class="detail-container">
+          <span class="tag-value">{{ course.watching | singleDigit }}</span>
+            <span ngbTooltip="Watching " placement="right " class="tag-icon"> <i class="bux-icon bux-eye-on"></i></span>
+            </span>
+
+            <span class="detail-container">
+          <span class="tag-value">{{ course.lessonTypeCounts.VIDEO | singleDigit }}</span>
+            <span ngbTooltip="Video " placement="right " class="tag-icon"><i class="bux-icon bux-video"></i></span>
+            </span>
+            <span class="detail-container">
+          <span class="tag-value">{{ course.watched | singleDigit }}</span>
+            <span ngbTooltip="Completed " placement="right " class="tag-icon"><i class="bux-icon bux-tick-circle-original"></i
+          ></span>
+            </span>
+
+            <span class="detail-container">
+          <span class="tag-value">{{ course.numberOfQuizzes | singleDigit }}</span>
+            <span ngbTooltip="Quiz " placement="right " class="tag-icon"><i class="bux-icon bux-quizz"></i></span>
+            </span>
+            </span>
+        </li>
+        <span *ngIf="course.showStats===true ">
+      <app-course-stats [course]="course "></app-course-stats>
+    </span>
+    </ul>
+</div>

@@ -1,0 +1,105 @@
+<div class="modal-header">
+  <button type="button" class="close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="notification-modal-body">
+  <ngb-tabset class="tabset1" [justify]="tabPanelLayout">
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <div (click)="getContributionRequests()">Course contribution requests</div>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <span *ngIf="loadingIndicator === IndicatorState.LOADING">
+          <app-loader></app-loader>
+        </span>
+        <div *ngIf="contributionRequests.length === 0" class="no-content">
+          You don't have any course contribution requests...
+        </div>
+        <div
+          *ngIf="contributionRequests.length > 0 && loadingIndicator === IndicatorState.LOADED"
+          class="course-contribution-request-container"
+        >
+          <div class="course-contribution-request-content col-md-6" *ngFor="let request of contributionRequests">
+            {{ request.adminRequestorName }} would like you to be a content contributor to the
+            <span class="course-title" (click)="viewCourseDescription(request)">{{ request.courseTitle }}</span> course.
+
+            <div class="action-options">
+              <button
+                id="btnSearch"
+                class="btn btn-secondary btn-md float-left"
+                (click)="rejectContributionRequest(request.id)"
+              >
+                Reject
+              </button>
+              <button
+                id="btnClear"
+                class="btn btn-primary btn-md float-right"
+                (click)="acceptContributionRequest(request.id)"
+              >
+                Accept
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <div>General notifications</div>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <span *ngIf="loadingIndicator === IndicatorState.LOADING">
+          <app-loader></app-loader>
+        </span>
+        <div *ngIf="loadingIndicator === IndicatorState.LOADED" class="no-content">
+          You don't have any general notifications...
+        </div></ng-template
+      >
+    </ngb-tab>
+    <ngb-tab *ngIf="isAdmin">
+      <ng-template ngbTabTitle>
+        <div (click)="getContributionRequestStatus()">Contribution request(s) status</div>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <span *ngIf="loadingIndicator === IndicatorState.LOADING">
+          <app-loader></app-loader>
+        </span>
+        <div
+          *ngIf="contributionRequestStatus.length === 0 && loadingIndicator === IndicatorState.LOADED"
+          class="no-content"
+        >
+          You don't have any course contribution request status active...
+        </div>
+        <div
+          *ngIf="loadingIndicator === IndicatorState.LOADED && contributionRequestStatus.length > 0"
+          class="course-contribution-request-tracking-container"
+        >
+          <div
+            class="course-contribution-request-tracking-content col-md-4"
+            *ngFor="let requestStatus of contributionRequestStatus"
+          >
+            <p><span class="label-text">Name</span> : {{ requestStatus.userName }} {{ requestStatus.userSurname }}</p>
+            <p><span class="label-text">Course</span> : {{ requestStatus.courseTitle }}</p>
+            <p><span class="label-text">Date</span> : {{ requestStatus.createdAt | date }}</p>
+            <p class="course-status">
+              <span class="label-text">Status</span> : {{ requestStatus.status }}
+              <span
+                [ngClass]="{
+                  'accepted-indicator': requestStatus.status === 'Accepted',
+                  'rejected-indicator': requestStatus.status === 'Rejected',
+                  'pending-indicator': requestStatus.status === 'Pending'
+                }"
+              ></span>
+            </p>
+            <button
+              (click)="deleteContributionRequestStatus(requestStatus.contributionRequestId)"
+              class="btn btn-primary btn-md float-right"
+              [class.disabled]="requestStatus.status === 'Pending'"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

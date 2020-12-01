@@ -1,0 +1,349 @@
+<span *ngIf="loadingIndicator === IndicatorState.LOADING">
+  <app-loader></app-loader>
+</span>
+<div class="container">
+  <span *ngIf="showCourseAdd">
+    <div class="header-icon mx-auto">
+      <div class="main-icon">
+        <i class="bux-icon bux-header-icon bux-upload"></i>
+        <div class="header-text">Add New Course</div>
+      </div>
+    </div>
+    <div>
+      <input
+        type="text"
+        (ngModelChange)="courseContentModified()"
+        [(ngModel)]="courseTitle"
+        class="form-control"
+        placeholder="Enter Course title"
+        required
+      />
+    </div>
+
+    <div class="editor-description">
+      <ckeditor
+        (ngModelChange)="courseContentModified()"
+        [(ngModel)]="courseDescription"
+        [editor]="Editor"
+        [config]="config"
+      >
+      </ckeditor>
+    </div>
+    <div class="header-text">Select Course Image</div>
+    <div class="row">
+      <span *ngIf="loadingIndicator === IndicatorState.LOADING">
+        <app-loader></app-loader>
+      </span>
+      <div *ngIf="loadingIndicator === IndicatorState.LOADED && Icons.length > 0" class="container image-edit-display">
+        <div class="container image-edit-display">
+          <span (click)="leftScroll()"><i class="bux-icon bux-chevron-left icon-allign"></i></span>
+
+          <div class="row-image-display">
+            <div class="row-image" *ngFor="let icon of Icons">
+              <img (click)="iconSelect(icon.source, $event)" src="{{ icon.source }}" class="icon" />
+            </div>
+          </div>
+          <span (click)="rightScroll()"><i class="bux-icon bux-arrow-right icon-allign"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-activation-prompt">
+      <div class="prompt-text">Would you like to publish the course immediately:</div>
+      <div>
+        <label class="switch">
+          <input type="checkbox" name="activate" (change)="activateCourse(1)" checked />
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="course-level-select-container">
+      <div class="prompt-text">Course level :</div>
+
+      <select class="course-level-select" [(ngModel)]="courseLevel">
+        <option [value]="undefined" selected>--Select Level--</option>
+        <option *ngFor="let level of courseLevels" [value]="level">{{ level }}</option>
+      </select>
+    </div>
+
+    <div class="action-options">
+      <button id="btnSearch" class="btn btn-secondary btn-md" (click)="dismiss()">Cancel</button>
+      <button
+        class="btn btn-primary btn-md"
+        (click)="showAddCourseInformation()"
+        [disabled]="courseTitle === '' || selectedImage === ''"
+      >
+        Next
+      </button>
+    </div>
+  </span>
+
+  <span class="step1" *ngIf="showSelectOptionsView">
+    <div class="header-icon mx-auto">
+      <div class="main-icon">
+        <div class="header-text">Create a lesson</div>
+      </div>
+    </div>
+    <div>
+      <input
+        type="text"
+        (ngModelChange)="courseContentModified()"
+        [(ngModel)]="lessonTitle"
+        class="course-title form-control"
+        placeholder="Enter Lesson title"
+        required
+      />
+      <div class="lesson-type-container">
+        <span class="label-select">Select Lesson Type:</span>
+        <span class="lesson-type-options">
+          <label class="cb-container" ngbTooltip="upload videos of up to 50mb in size">
+            <input type="radio" value="0" class="lessonType" name="lessonType" (click)="goToType('VIDEO')" />Video
+            <span class="checkmark"></span>
+          </label>
+          <label class="cb-container" ngbTooltip="allows you to embed youtube videos with text description">
+            <input type="radio" class="lessonType" value="1" name="lessonType" (click)="goToType('TEXT')" />Text
+            (Writeup / Images)
+            <span class="checkmark"></span>
+          </label>
+        </span>
+      </div>
+    </div>
+
+    <span *ngIf="showNewAddVideo">
+      <div class="header-icon mx-auto">
+        <div class="main-icon">
+          <i class="bux-icon bux-header-icon bux-upload"></i>
+          <div class="header-text">Upload Video</div>
+        </div>
+      </div>
+      <div class="file-field input-field">
+        <div class="btn btn-primary">
+          <span>SELECT</span>
+          <input
+            *ngIf="courseId !== undefined"
+            class="form-control"
+            #fileInput
+            type="file"
+            ng2FileSelect
+            [uploader]="lessonUploader"
+            (change)="onFileSelected($event)"
+          />
+          <input
+            *ngIf="courseId === undefined"
+            class="form-control"
+            #fileInput
+            type="file"
+            ng2FileSelect
+            [uploader]="courseUploader"
+            (change)="onFileSelected($event)"
+          />
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" [(ngModel)]="fileName" type="text" />
+        </div>
+      </div>
+
+      <video *ngIf="previewPath" width="100%" controls #video (loadedmetadata)="onMetadata($event, video)">
+        <source [src]="previewPath" />
+      </video>
+
+      <div class="row">
+        <div class="col-md-12 action-options">
+          <button id="btnSearch" class="btn btn-secondary btn-md float-left" (click)="gotoStep1()">Back</button>
+          <button
+            *ngIf="courseId !== undefined"
+            class="btn btn-primary btn-md float-right"
+            (click)="lessonUploader.uploadAll()"
+            [class.disabled]="fileSelected === ''"
+          >
+            Create
+          </button>
+          <button
+            *ngIf="courseId === undefined"
+            class="btn btn-primary btn-md float-right"
+            (click)="courseUploader.uploadAll()"
+            [class.disabled]="fileSelected === ''"
+          >
+            Create
+          </button>
+        </div>
+        <div class="col-md-12 action-options" *ngIf="fileUploadedMessage">
+          <p class="alert alert-success">{{ fileUploadedMessage }}</p>
+        </div>
+      </div>
+    </span>
+
+    <span *ngIf="showNewAddText">
+      <div class="header-icon mx-auto">
+        <div class="main-icon">
+          <i class="bux-icon bux-header-icon bux-upload"></i>
+          <div class="header-text">Add Text Content for the Lesson</div>
+        </div>
+      </div>
+      <ckeditor
+        (ngModelChange)="courseContentModified()"
+        (ready)="onCKEditorReady($event)"
+        [(ngModel)]="editorText"
+        [editor]="Editor"
+        [config]="configs"
+      >
+      </ckeditor>
+      <div class="row">
+        <div class="col-md-12 action-options">
+          <button id="btnSearch" class="btn btn-secondary btn-md float-left" (click)="gotoStep1()">Back</button>
+          <button
+            id="btnClear"
+            class="btn btn-primary btn-md float-right"
+            (click)="saveLesson('TEXT')"
+            [class.disabled]="editorText === ''"
+          >
+            Create
+          </button>
+        </div>
+      </div>
+    </span>
+  </span>
+
+  <span class="step1" *ngIf="addCourseInformation">
+    <div class="header-icon mx-auto">
+      <div class="main-icon">
+        <div class="header-text">Course Information</div>
+      </div>
+    </div>
+
+    <div class="editor-description">
+      <ckeditor
+        (ngModelChange)="courseContentModified()"
+        [(ngModel)]="courseAudience"
+        [editor]="Editor"
+        [config]="{
+          placeholder: 'Course pre-requisites...',
+          toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote']
+        }"
+      >
+      </ckeditor>
+    </div>
+
+    <div class="editor-description">
+      <ckeditor
+        (ngModelChange)="courseContentModified()"
+        [(ngModel)]="coursePreRequisite"
+        [editor]="Editor"
+        [config]="{
+          placeholder: 'Course audience...',
+          toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote']
+        }"
+      >
+      </ckeditor>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 action-options">
+        <button id="btnSearch" class="btn btn-secondary btn-md float-left" (click)="gotoStep1()">Back</button>
+        <button
+          id="btnClear"
+          class="btn btn-primary btn-md float-right"
+          (click)="saveCourse()"
+          [class.disabled]="coursePreRequisite === '' || courseAudience === ''"
+        >
+          Create
+        </button>
+      </div>
+    </div>
+  </span>
+
+  <span *ngIf="showUpdateText">
+    <div class="header-icon mx-auto">
+      <div class="main-icon">
+        <i class="bux-icon bux-header-icon bux-upload"></i>
+        <div class="header-text">Add Text Content for the Lesson</div>
+      </div>
+    </div>
+    <ckeditor
+      (ngModelChange)="courseContentModified()"
+      (ready)="onCKEditorReady($event)"
+      [(ngModel)]="editorText"
+      [editor]="Editor"
+      [config]="configs"
+    >
+    </ckeditor>
+    <div class="row">
+      <div class="col-md-12 action-options">
+        <button id="btnSearch" class="btn btn-secondary btn-md float-left" (click)="gotoStep1()">Back</button>
+        <button
+          id="btnClear"
+          class="btn btn-primary btn-md float-right"
+          (click)="saveLesson('TEXT')"
+          [class.disabled]="editorText === ''"
+        >
+          Create
+        </button>
+      </div>
+    </div>
+  </span>
+
+  <span *ngIf="showUpdateVideo">
+    <div class="header-icon mx-auto">
+      <div class="main-icon">
+        <i class="bux-icon bux-header-icon bux-upload"></i>
+        <div class="header-text">Upload Video</div>
+      </div>
+    </div>
+    <div class="file-field input-field">
+      <div class="btn btn-primary">
+        <span>SELECT</span>
+        <input
+          *ngIf="courseId !== undefined"
+          class="form-control"
+          #fileInput
+          type="file"
+          ng2FileSelect
+          [uploader]="lessonUploader"
+          (change)="onFileSelected($event)"
+        />
+        <input
+          *ngIf="courseId === undefined"
+          class="form-control"
+          #fileInput
+          type="file"
+          ng2FileSelect
+          [uploader]="courseUploader"
+          (change)="onFileSelected($event)"
+        />
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" [(ngModel)]="fileName" type="text" />
+      </div>
+    </div>
+
+    <video *ngIf="previewPath" width="100%" controls #video (loadedmetadata)="onMetadata($event, video)">
+      <source [src]="previewPath" />
+    </video>
+
+    <div class="row">
+      <div class="col-md-12 action-options">
+        <button id="btnSearch" class="btn btn-secondary btn-md float-left" (click)="gotoStep1()">Back</button>
+        <button
+          *ngIf="courseId !== undefined"
+          class="btn btn-primary btn-md float-right"
+          (click)="lessonUploader.uploadAll()"
+          [class.disabled]="fileSelected === ''"
+        >
+          Create
+        </button>
+        <button
+          *ngIf="courseId === undefined"
+          class="btn btn-primary btn-md float-right"
+          (click)="courseUploader.uploadAll()"
+          [class.disabled]="fileSelected === ''"
+        >
+          Create
+        </button>
+      </div>
+      <div class="col-md-12 action-options" *ngIf="fileUploadedMessage">
+        <p class="alert alert-success">{{ fileUploadedMessage }}</p>
+      </div>
+    </div>
+  </span>
+</div>

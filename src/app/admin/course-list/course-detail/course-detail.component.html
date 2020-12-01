@@ -1,0 +1,98 @@
+<span *ngIf="loadingIndicator === IndicatorState.LOADING">
+  <app-loader></app-loader>
+</span>
+<div *ngIf="loadingIndicator === IndicatorState.LOADED" class="row detail-container">
+  <div class="col-md-7">
+    <div class="lesson-container" cdkDropList (cdkDropListDropped)="drop($event)">
+      <div class="lesson-container-row" *ngFor="let lesson of courseDetails.lessons" cdkDrag>
+        <span ngbTooltip="Move content" class="lesson-move"><i class="bux-icon bux-sort-arrow"></i></span>
+        <span class="lesson-duration">{{ lesson.durationInSeconds * 1000 | date: 'H:mm:ss':'UTC' }}</span>
+        <span class="lesson-title" *ngIf="!lesson.displayActions">{{ lesson.title }}</span>
+        <span class="lesson-title" *ngIf="lesson.displayActions">
+          <input type="text" class="form-control" [(ngModel)]="lesson.title" />
+        </span>
+        <span class="lesson-edit" ngbTooltip="Edit content" (click)="showLessonActionBar(lesson)">
+          <i
+            [ngClass]="{ 'bux-edit': !lesson.displayActions, 'bux-edit-filled': lesson.displayActions }"
+            class="bux-icon"
+          ></i>
+        </span>
+        <span class="action-bar" [class.hide-action]="!lesson.displayActions">
+          <span ngbTooltip="Edit Lesson" placement="top" class="action-bar-icon" (click)="editLesson(lesson)"
+            ><i class="bux-icon bux-upload"></i
+          ></span>
+          <span
+            ngbTooltip="Download"
+            placement="top"
+            class="action-bar-icon"
+            *ngIf="lesson.type === 'VIDEO'"
+            (click)="downloadLesson(lesson.title, lesson.source)"
+            ><i class="bux-icon bux-download"></i
+          ></span>
+          <span ngbTooltip="Preview" placement="top" class="action-bar-icon" (click)="previewContent()"
+            ><i class="bux-icon bux-eye-on"></i
+          ></span>
+          <span ngbTooltip="Add Contributors" placement="top" class="action-bar-icon" (click)="addContributors()"
+            ><i class="bux-icon bux-contributors"></i
+          ></span>
+          <span ngbTooltip="Add Quiz" placement="top" class="action-bar-icon" (click)="showQuizOptions(lesson)"
+            ><i class="bux-icon bux-quizz"></i
+          ></span>
+          <span ngbTooltip="Add Section" placement="top" class="action-bar-icon"
+            ><i class="bux-icon bux-modify"></i
+          ></span>
+          <span
+            class="action-bar-icon"
+            (click)="removeLesson(lesson)"
+            ngbTooltip="Delete"
+            placement="top"
+            class="action-bar-icon"
+            ><i class="bux-icon bux-x-close"></i
+          ></span>
+        </span>
+      </div>
+    </div>
+    <span class="add-content" (click)="addLesson()">
+      <i class="menu-icon bux-icon bux-plus-circle"></i
+      ><span class="add-content-text">Add Content to the series...</span>
+    </span>
+  </div>
+  <div class="col-md-5 editor-description">
+    <div class="course-level-select-container">
+      <span class="prompt-text">Course level :</span>
+      <span>
+        <select *ngIf="course.courseLevel !== ''" [(ngModel)]="course.courseLevel" (ngModelChange)="editCourse()">
+          <option [value]="courseLevel" selected>{{ courseLevel }}</option>
+          <option *ngFor="let level of courseLevels" [value]="level">{{ level }}</option>
+        </select>
+
+        <select *ngIf="course.courseLevel === ''" [(ngModel)]="course.courseLevel" (ngModelChange)="editCourse()">
+          <option [value]="course.courseLevel" selected>--Select Level--</option>
+          <option *ngFor="let level of courseLevels" [value]="level">{{ level }}</option>
+        </select>
+      </span>
+    </div>
+    <ckeditor
+      [(ngModel)]="course.description"
+      [editor]="Editor"
+      [config]="{ toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote'] }"
+    >
+    </ckeditor>
+    <div class="update-container">
+      <button (click)="editCourse()" class="btn btn-primary btn-small-description float-right">
+        Update Description
+      </button>
+    </div>
+    <br />
+    <span class="tags-container">
+      <i ngbTooltip="Add tag" (click)="addTag()" class="bux-icon bux-plus-circle"></i>
+      <span *ngFor="let tag of courseDetails.tags">
+        <span class="tag"
+          >{{ tag.label | uppercase }} <span (click)="confirmTagRemoval(course, tag)" class="remove-tag-icon"> x </span>
+        </span>
+      </span>
+      <br />
+      <div *ngIf="tagAddedMessage !== ''">{{ tagAddedMessage }}</div>
+    </span>
+  </div>
+</div>

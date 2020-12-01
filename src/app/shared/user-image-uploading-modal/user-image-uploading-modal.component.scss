@@ -1,0 +1,58 @@
+.user-personal-image-upload-modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.file-field {
+  position: relative;
+  cursor: pointer;
+}
+
+.input-field {
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.file-field .btn {
+  float: left;
+}
+
+.file-field input[type='file'] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.file-field .file-path-wrapper {
+  overflow: hidden;
+  padding-left: 4px;
+  width: 100%;
+}
+
+.user-profile-image-container {
+  display: flex;
+  justify-content: center;
+
+  .user-profile-image {
+    width: 102px;
+    height: 102px;
+    border-radius: 50%;
+    border: solid 2px #f28f06;
+  }
+}
+
+.action-options {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}

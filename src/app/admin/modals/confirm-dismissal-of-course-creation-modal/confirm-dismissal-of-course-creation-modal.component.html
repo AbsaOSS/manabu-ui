@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <div class="header-icon mx-auto">
+        <div class="main-icon">
+            <i class="bux-icon bux-header-icon bux-warning"></i>
+        </div>
+        <div class="header-text">Terminate content creation</div>
+    </div>
+    <button type="button" class="close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body">
+    <div class="body-text mx-auto">
+        Are you sure you'd like to terminate this process ?<br /> All the content you've created will be lost.
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12 action-options">
+            <button id="btnSearch" class="btn btn-secondary btn-md float-left" (click)="activeModal.dismiss()">
+        Cancel
+      </button>
+            <button id="btnClear" class="btn btn-primary btn-md float-right" (click)="confirmProgressTermination()">
+        Proceed
+      </button>
+        </div>
+    </div>
+</div>

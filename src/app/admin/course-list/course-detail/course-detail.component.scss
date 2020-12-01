@@ -1,0 +1,171 @@
+.detail-container {
+  background-color: #f4f3f3;
+}
+
+.lesson-container {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 12px;
+  padding-top: 12px;
+  cursor: pointer;
+}
+
+.lesson-container-row {
+  display: flex;
+  padding-left: 12px;
+  align-items: center;
+}
+
+.lesson-edit {
+  cursor: pointer;
+  width: 5%;
+  margin-left: 24px;
+}
+
+.lesson-edit-selected {
+  color: #870a3c;
+}
+
+.show-action {
+  visibility: inherit;
+}
+
+.hide-action {
+  visibility: hidden;
+}
+
+.lesson-move {
+  width: 5%;
+}
+
+.lesson-duration {
+  width: 5%;
+  font-family: SourceSansPro-Light;
+  font-style: italic;
+  color: #9a9595;
+  margin-left: 30px;
+}
+
+.lesson-title {
+  overflow: ellipses;
+  width: 30%;
+  color: #555555;
+  margin-left: 24px;
+}
+
+.action-bar {
+  background-color: #d8d8d8;
+  display: flex;
+  align-items: center;
+  color: #9a9595;
+  padding-top: 4px;
+  padding-left: 4px;
+  margin-left: 30px;
+}
+
+.action-bar-icon {
+  cursor: pointer;
+  padding-right: 8px;
+}
+
+.action-bar-icon:hover {
+  color: #870a3c;
+}
+
+.add-content {
+  padding-left: 24px;
+  display: flex;
+  align-items: center;
+  padding-top: 4px;
+  cursor: pointer;
+}
+
+.add-content-text {
+  padding-left: 12px;
+  color: #9a9595;
+  font-style: italic;
+  font-family: SourceSansPro-ExtraLight;
+}
+
+.bux-plus-circle {
+  font-size: 20px;
+}
+
+.tags-container {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin: 12px 0px;
+  flex-wrap: wrap;
+  line-height: 24px;
+}
+
+.tags-container .bux-plus-circle {
+  color: #9a9595;
+  cursor: pointer;
+}
+
+.tags-container .bux-plus-circle:hover {
+  color: #870a3c;
+}
+
+.tag {
+  background-color: #870a3c;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  color: white;
+  padding: 4px 12px 4px 12px;
+  margin-left: 8px;
+  font-style: bold;
+}
+
+.editor-description {
+  padding-top: 16px;
+  padding-right: 16px;
+}
+
+.update-container {
+  margin: 12px 0px 0px 12px;
+}
+
+.btn-small-description {
+  font-size: 10px;
+}
+
+.add-content:hover {
+  color: #870a3c;
+  .add-content-text {
+    color: #870a3c;
+  }
+  .menu-icon {
+    color: #870a3c;
+  }
+}
+
+.bux-edit-filled {
+  color: #870a3c;
+}
+
+.lesson-container-row:hover {
+  color: #870a3c;
+}
+
+.remove-tag-icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.menu-icon {
+  color: #9a9595;
+}
+
+.course-level-select-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 14px;
+}
+
+.prompt-text {
+  color: #555555;
+  margin-right: 6px;
+}

@@ -1,0 +1,61 @@
+<span *ngIf="loadingIndicator === IndicatorState.LOADING">
+  <app-loader></app-loader>
+</span>
+<div *ngIf="loadingIndicator === IndicatorState.LOADED && !courses" class="no-content">
+  There are currently no courses
+</div>
+<div class="container">
+  <div class="row card-row">
+    <div class="col-md-4" *ngFor="let course of courses">
+      <div class="card mb-4 box-shadow">
+        <h2 *ngIf="course.courseIsNew" class="new-course-badge">New course!!!</h2>
+        <div class="course-card-top" (click)="viewCourse(course)">
+          <span class="course-title">{{ course.title }}</span>
+          <div class="course-description">{{ course.shortDescription }}</div>
+          <img class="card-img-top" [src]="course.image" />
+        </div>
+        <div class="play-button" (click)="viewCourse(course)">
+          <img src="../../../assets/images/play_graphic.png" alt="play" />
+        </div>
+        <div class="stars-container">
+          <span *ngFor="let star of course.starItems"
+            ><i
+              class="bux-icon"
+              [ngClass]="{ 'bux-star-filled': star === 'starred', 'bux-star': star !== 'starred' }"
+            ></i
+          ></span>
+          <span class="reciews-content" *ngIf="course.reviews.length">
+            <p class="reviews" (click)="getSelectedReviews(course.id)">{{ course.reviews.length }} reviews</p>
+          </span>
+        </div>
+        <div class="card-body">
+          <div class="card-text">
+            <div class="section-title">Who's teaching :</div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center author-container" (click)="viewCourse(course)">
+            <div class="author-container-details" *ngFor="let author of course.authors">
+              <div *ngIf="author.image === ''" [attr.data-initials]="[author.initials]"></div>
+              <img *ngIf="author.image !== ''" [src]="author.image" class="admin-profile-image" />
+              <span class="author-name">
+                <span>{{ author.name }}</span>
+                <span>{{ author.surname }}</span></span
+              >
+            </div>
+          </div>
+          <span
+            *ngIf="course.courseLevel !== ''"
+            [ngClass]="{
+              'badge-warning': course.courseLevel === courseLevel.All,
+              'badge-success': course.courseLevel === courseLevel.Beginner,
+              'badge-secondary': course.courseLevel === courseLevel.Intermediate,
+              'badge-danger': course.courseLevel === courseLevel.Expert
+            }"
+            class="badge badge-large"
+            >{{ course.courseLevel }}</span
+          >
+          <span *ngIf="course.courseLevel === ''" class="badge badge-large badge-warning">{{ courseLevel.All }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

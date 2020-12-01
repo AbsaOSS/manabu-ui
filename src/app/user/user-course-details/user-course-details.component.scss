@@ -1,0 +1,355 @@
+.main-lesson-content-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+}
+
+.side-panel-content-container {
+  position: fixed;
+  width: 15%;
+  background: #fff;
+  height: 100vh;
+}
+
+.left-panel-header {
+  display: flex;
+  font-size: 18px;
+  padding: 16px;
+  justify-content: center;
+  font-weight: 900;
+  border-bottom: 2px solid #dee2e6;
+  color: #9a9595;
+}
+
+.left-panel-header-no-content {
+  font-size: 16px;
+  margin-top: 16px;
+  font-weight: 900;
+  border-bottom: 2px solid #dee2e6;
+  padding-bottom: 8px;
+}
+
+.side-panel-content {
+  z-index: 1;
+  height: 100vh;
+  background-color: #fff;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: 14vh;
+}
+
+.lesson-detail-section {
+  position: relative;
+  z-index: 0;
+  background-color: #f8f9fa;
+  box-shadow: 4px 20px 2px 1px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.lesson-details-extra-padding {
+  padding-bottom: 10vh;
+}
+
+.course-intro-padding-removal {
+  padding-bottom: 0px;
+}
+
+.lesson-detail-section-full-view-width {
+  width: 100%;
+}
+
+.lesson-detail-section-view-width-accomodating-stepper {
+  width: 85%;
+  margin-left: 15%;
+  border-left: 1px solid #ddd;
+}
+
+.course-container {
+  background: hsl(100, 0%, 94%);
+  padding: 20px;
+  box-shadow: 0px 1px 1px;
+  margin-top: 48px;
+  color: #555555;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  border-top: 5px solid #870a3c;
+}
+
+.lesson-title {
+  font-size: 24px;
+  padding-bottom: 48px;
+}
+
+.btn-lesson-next {
+  margin-top: 48px;
+  margin-bottom: 24px;
+  float: right;
+  cursor: pointer;
+}
+
+.no-padding {
+  padding-right: 0px;
+}
+
+.author-image {
+  border: solid 2px #f8c782;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.video-container {
+  background: #000;
+}
+
+.author-content {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.not-text-header {
+  background: #000;
+  margin-bottom: 0px;
+}
+
+.title-container {
+  color: #fff;
+  padding-left: 12px;
+  display: flex;
+  align-items: center;
+  height: 48px;
+}
+
+.course-info {
+  display: flex;
+  border-radius: 4px;
+  background-color: #870a3c;
+  height: 48px;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 12px;
+}
+
+.tag {
+  background-color: #870a3c;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  color: white;
+  padding: 4px 12px 4px 12px;
+  margin-left: 8px;
+}
+
+.tag-container {
+  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.scroll-button {
+  display: none;
+  position: fixed;
+  top: 80px;
+  right: 30px;
+  border: none;
+  outline: none;
+  background-color: #fa551e;
+  color: white;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.scroll-button:hover {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+  color: #fff;
+  background-color: #fa6634;
+  border: solid 1px #fa6634;
+}
+
+.upper-course-intro-information {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 14px;
+  margin-right: 14px;
+}
+
+.course-title-and-image-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 12px;
+  .course-image {
+    width: 70px;
+    height: 70px;
+    margin-right: 12px;
+  }
+}
+
+.course-title-container {
+  display: flex;
+  flex-direction: column;
+
+  .course-title {
+    align-self: flex-start;
+    line-height: 1;
+    font-size: 22px;
+    color: #640032;
+  }
+}
+
+.lower-course-intro-information {
+  display: flex;
+  flex-direction: column;
+  margin-right: 14px;
+
+  .tags-container {
+    padding-top: 32px;
+    margin-left: 20px;
+  }
+
+  .hide-tags-container {
+    display: none;
+  }
+}
+
+.course-author-information-and-audience-pre-requisites-container {
+  display: flex;
+  flex-direction: row;
+
+  .section-header {
+    font-size: 16px;
+    color: #640032;
+  }
+
+  .audience-pre-requisites-and-course-details-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 740px;
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    background-color: #fff;
+
+    .course-duration-and-initiation-container {
+      display: flex;
+      flex-direction: column;
+      padding-top: 32px;
+      padding-bottom: 32px;
+      margin-left: 20px;
+
+      .course-initiation-button-container {
+        .btn-lesson-next {
+          margin-top: 12px;
+          margin-bottom: 0px;
+          float: none;
+        }
+      }
+    }
+
+    .course-description-container {
+      align-content: flex-start;
+      width: 60%;
+      margin-left: 20px;
+      .course-description-content {
+        padding-top: 10px;
+      }
+    }
+
+    .audience-pre-requisites-container {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      color: #555555;
+      border-radius: 10px;
+      margin-left: 20px;
+
+      .audience-content-container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 32px;
+        .audience-content {
+          padding-top: 10px;
+        }
+      }
+
+      .pre-requisites-content-container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+        .pre-requisites-content {
+          padding-top: 10px;
+        }
+      }
+    }
+  }
+
+  .author-information-container {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    background-color: #f8f9fa;
+    padding-left: 20px;
+    padding-top: 26px;
+
+    .author-name-and-image-container {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 32px;
+
+      .admin-profile-image {
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        border: solid 2px #f28f06;
+      }
+      .author-name-container {
+        align-self: center;
+        margin-left: 10px;
+      }
+    }
+
+    .author-email-container {
+      margin-bottom: 32px;
+    }
+
+    .author-linkedin-account-container {
+      margin-bottom: 32px;
+      color: red;
+      text-decoration: underline;
+    }
+
+    .about-author-container {
+      margin-bottom: 32px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .other-courses-by-author-container {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+
+      .other-courses-by-author-container-image-container {
+        padding-top: 10px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .other-courses-by-author-image {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+  }
+}

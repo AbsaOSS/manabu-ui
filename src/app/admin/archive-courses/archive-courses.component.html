@@ -1,0 +1,10 @@
+<div class="container">
+    <div *ngIf="courses && courses.length === 0" class="no-content">
+        There are no Archived courses.
+    </div>
+
+    <span *ngIf="loadingIndicator === IndicatorState.LOADING">
+    <app-loader></app-loader>
+  </span>
+    <app-courses [courses]="courses" [loadingIndicator]="loadingIndicator" [resetCourseOption]="true" (callRefresh)="refreshCourse($event)"></app-courses>
+</div>

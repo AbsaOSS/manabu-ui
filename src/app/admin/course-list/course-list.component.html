@@ -1,0 +1,98 @@
+<div *ngIf="loadingIndicator === IndicatorState.LOADED && !courses" class="no-content">
+  There are currently no courses
+</div>
+<div class="row">
+  <ul *ngFor="let course of courses" class="course-container">
+    <li class="course-item course-item-container">
+      <span
+        class="item-detail item-detail-icon-front"
+        [class.active-item]="course.isArchiveOptionOn || course.resetCourse"
+      >
+        <span
+          *ngIf="course.isArchiveOptionOn"
+          (click)="confirmDelete(course)"
+          ngbTooltip="Delete "
+          placement="right "
+          style="padding-right: 6px;"
+        >
+          <i class="bux-icon bux-delete-trash"></i>
+        </span>
+        <span
+          *ngIf="course.resetCourse"
+          (click)="confirmCourseAdd(course)"
+          ngbTooltip="Move "
+          placement="right "
+          style="padding-right: 6px;"
+        >
+          <i class="bux-icon bux-external-link"></i>
+        </span>
+        <span ngbTooltip="Edit " placement="right " (click)="showCourseDetail(course)">
+          <i
+            [ngClass]="{
+              'bux-edit': !course.isArchiveOptionOn && !course.resetCourse,
+              'bux-edit-filled': course.isArchiveOptionOn || course.resetCourse
+            }"
+            class="bux-icon bux-row-edit"
+          ></i>
+        </span>
+      </span>
+      <span class="item-detail item-detail-image">
+        <img src="{{ course.image }} " width="58 " height="58 " />
+      </span>
+      <span class="item-detail item-detail-title">
+        <div class="course-title">{{ course.title }}</div>
+        <div>
+          <span
+            *ngIf="course.showDetail"
+            class="edit-course-icon"
+            ngbTooltip="Edit Course "
+            placement="right "
+            (click)="editCourse(course)"
+            ><i class="bux-icon bux-edit bux-row-edit"></i
+          ></span>
+        </div>
+      </span>
+      <span class="item-detail item-detail-description" [innerHTML]="course.description.slice(0, 80)"> </span>
+      <span class="item-detail item-detail-tag-list item-detail item-detail-tag-list">
+        <span class="detail-container">
+          <span class="tag-value">{{ course.authorCounts | singleDigit }}</span>
+          <span ngbTooltip="Contributors " placement="right " class="tag-icon">
+            <i class="bux-icon bux-profile"></i
+          ></span>
+        </span>
+        <span class="detail-container">
+          <span class="tag-value">{{ course.lessonTypeCounts.VIDEO | singleDigit }}</span>
+          <span ngbTooltip="Video " placement="right " class="tag-icon"><i class="bux-icon bux-video"></i></span>
+        </span>
+        <span class="detail-container">
+          <span class="tag-value">{{ course.tagCounts | singleDigit }}</span>
+          <span ngbTooltip="Tags " placement="right " class="tag-icon"><i class="bux-icon bux-tags"></i></span>
+        </span>
+        <span class="detail-container">
+          <span class="tag-value">{{ course.numberOfQuizzes | singleDigit }}</span>
+          <span ngbTooltip="Quiz " placement="right " class="tag-icon"><i class="bux-icon bux-quizz"></i></span>
+        </span>
+      </span>
+      <span *ngIf="course.isPublished === 0" class="detail-container">
+        <span class="course-activation icon-alignment" ngbTooltip="activate course " placement="right ">
+          <div (click)="confirmCourseActivation(course)" class="switch">
+            <input type="checkbox" />
+            <span class="slider round"></span>
+          </div>
+        </span>
+      </span>
+
+      <span *ngIf="course.isPublished === 1" class="detail-container">
+        <span class="course-activation icon-alignment" ngbTooltip="deactivate course " placement="right ">
+          <div (click)="confirmCourseDeactivation(course)" class="switch">
+            <input type="checkbox" checked />
+            <span class="slider round"></span>
+          </div>
+        </span>
+      </span>
+    </li>
+    <span *ngIf="course.showDetail === true">
+      <app-course-detail [course]="course" (refreshCourse)="refreshCourse($event)"></app-course-detail>
+    </span>
+  </ul>
+</div>

@@ -1,0 +1,117 @@
+<span *ngIf="loadingIndicator === IndicatorState.LOADING">
+  <app-loader></app-loader>
+</span>
+<div *ngIf="loadingIndicator === IndicatorState.LOADED && !userData" class="no-content">
+  User info is currently unavailable
+</div>
+<span *ngIf="userData">
+  <div class="profile-card">
+    <div class="upper-profile-card">
+      <div class="profile-pic">
+        <div *ngIf="userData.user.image === ''" [attr.data-initials]="[userData.user.initials]"></div>
+        <img *ngIf="userData.user.image !== ''" class="user-profile-image" [src]="userData.user.image" />
+      </div>
+
+      <div class="profile-meta">
+        <div class="profile-name">{{ userData.user.name }} {{ userData.user.surname }}</div>
+        <div class="admin-role">
+          {{ userData.user.email }}
+        </div>
+      </div>
+      <i
+        class="bux-icon bux-menu-meatball"
+        (click)="viewUsersPersonalDetails()"
+        ngbTooltip="View bio"
+        placement="left"
+      ></i>
+    </div>
+    <div class="lower-profile-card">
+      <div class="profile-stats">
+        <div class="profile-quick-stats">
+          {{ userData.numberOfCoursesStillInProgress | singleDigit }}
+          <span class="profile-icons" ngbTooltip="Watching">
+            <i class="bux-icon bux-eye-on"></i>
+          </span>
+        </div>
+
+        <div class="profile-quick-stats">
+          {{ userData.numberOfCompletedCourses | singleDigit }}
+
+          <span class="profile-icons" ngbTooltip="Watched">
+            <i class="bux-icon bux-tick-circle-original"></i>
+          </span>
+        </div>
+
+        <div class="profile-quick-stats">
+          {{ userData.favourites | singleDigit }}
+
+          <span class="profile-icons" ngbTooltip="Favourites">
+            <i class="bux-icon bux-star"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <span class="watching-space">
+    <div class="courses-watched-or-watching-heading" *ngIf="userData?.isWatchingCourse">Watching</div>
+
+    <div class="watching-courses-card" *ngIf="userData?.isWatchingCourse">
+      <div class="margin-container" *ngFor="let course of userData?.watchingCourses">
+        <div
+          *ngIf="course.progress.started && course.progress.completedCount != course.totalLessons"
+          class="watching-courses-card-course-container"
+          (click)="viewCourse(course.id)"
+        >
+          <div class="image-container">
+            <img class="watching-course-image" src="{{ course.image }}" />
+            <img class="play-image" src="/api/uploads/group-13@2x.png" />
+          </div>
+
+          <div class="watching-course-meta">
+            <div class="course-title">{{ course.title }}</div>
+            <div class="progressbar">
+              <ngb-progressbar
+                [value]="[course.percentageCompleted]"
+                [max]="100"
+                [showValue]="false"
+                height=".4rem"
+              ></ngb-progressbar>
+            </div>
+            <span class="lesson-completion-overview">{{ course.lessonProgress }}/{{ course.totalLessons }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </span>
+
+  <span class="watched-space">
+    <div class="courses-watched-or-watching-heading" *ngIf="userData.hasCompletedCourse">Watched</div>
+
+    <div class="watched-courses-card" *ngIf="userData.hasCompletedCourse">
+      <div class="margin-container" *ngFor="let course of userData.completedCoursesExcludingInactiveCourses">
+        <div *ngIf="course.watched === 1" class="watched-courses-card-course-container">
+          <img src="{{ course.image }}" />
+          <div class="course-meta">
+            <div class="course-title">{{ course.courseName }}</div>
+            <div class="last-edited-date">{{ course.updatedAt | date: 'fullDate' }}</div>
+          </div>
+          <div class="course-panel-icons">
+            <span ngbTooltip="Add to favourites" (click)="updateCourseFavourite(course.courseId)"
+              ><i
+                class="bux-icon"
+                [ngClass]="{ 'bux-star': course.status === 0, 'bux-star-filled': course.status === 1 }"
+              ></i
+            ></span>
+            <span (click)="viewCourse(course.courseId)" ngbTooltip="Watch again"
+              ><i class="bux-icon watch-again-options-icon bux-placeholder"></i
+            ></span>
+            <span (click)="confirmCourseRemoval(course)" ngbTooltip="Mark as unwatched"
+              ><i class="bux-icon mark-as-unwatched-icon bux-x-close"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </span>
+</span>

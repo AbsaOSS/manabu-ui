@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <button type="button" class="close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="course-title-and-image-container">
+  <div class="course-image"><img [src]="courseImage" /></div>
+  <div class="heading-text">{{ courseTitle }}</div>
+</div>
+<div class="modal-body">
+  <div class="course-description">
+    <p>{{ description }}</p>
+  </div>
+  <div class="return-button-container">
+    <button id="btnClear" class="btn btn-primary btn-md" (click)="activeModal.dismiss()">back</button>
+  </div>
+</div>

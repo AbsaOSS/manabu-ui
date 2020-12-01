@@ -1,0 +1,308 @@
+.margin-container {
+  margin-top: 8px;
+  margin-bottom: 12.7px;
+}
+
+.profile-card {
+  position: relative;
+  right: 30px;
+  left: 24px;
+  padding-top: 20px;
+  width: 270px;
+  height: 136px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.upper-profile-card {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: auto auto;
+  border-bottom: 2px solid #f6f6f6;
+}
+
+.profile-pic {
+  height: 60px;
+  margin-left: 12px;
+  margin-bottom: 10px;
+
+  .user-profile-image {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border: solid 2px #640032;
+  }
+
+  [data-initials]:before {
+    border: solid 2px #640032;
+  }
+}
+
+.profile-meta {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  text-align: start;
+
+  .profile-name {
+    align-self: flex-start;
+    color: #640032;
+    line-height: 20px;
+    font-size: 20px;
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .admin-role {
+    width: 180px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #888888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.lower-profile-card {
+  height: 54px;
+  text-align: center;
+}
+
+.profile-stats {
+  height: 24px;
+  width: 100%;
+  flex-direction: row;
+  margin-top: 8px;
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+}
+
+.watching-course-meta {
+  margin-left: 10px;
+}
+
+.watching-courses-card .course-title {
+  height: 16px;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  color: #555555;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 160px;
+  text-align: start;
+  font-family: SourceSansPro-Light;
+}
+
+.watching-courses-card {
+  position: relative;
+  width: 270px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  border: solid 1px #cccccc;
+  background-color: #ffffff;
+  margin-left: 24px;
+  margin-top: 8px;
+  float: left;
+  margin-bottom: 25px;
+}
+
+.progressbar {
+  width: 180px;
+  border: 1px solid #a9a9a9;
+  border-radius: 5px;
+  float: left;
+}
+
+::ng-deep .progress-bar {
+  background-color: #af144b;
+}
+
+.watching-courses-card-course-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  .image-container {
+    .play-image {
+      width: 33px;
+      height: 32px;
+      border-radius: 100%;
+      display: none;
+    }
+
+    .watching-course-image {
+      width: 33px;
+      height: 32px;
+      border-radius: 100%;
+      margin-left: 10px;
+      margin-top: 8px;
+    }
+  }
+}
+
+.lesson-completion-overview {
+  font-size: 10px;
+  line-height: 10px;
+  float: right;
+  margin-left: 10px;
+  color: #9a9595;
+}
+
+.watching-courses-card-course-container:hover {
+  display: flex;
+  .image-container {
+    .play-image {
+      width: 33px;
+      height: 32px;
+      margin-top: 8px;
+      border-radius: 100%;
+      display: initial;
+      position: relative;
+      margin-left: 10px;
+    }
+
+    .watching-course-image {
+      width: 33px;
+      height: 32px;
+      margin-top: 8px;
+      border-radius: 100%;
+      margin-left: 10px;
+      position: absolute;
+    }
+  }
+}
+
+.profile-quick-stats {
+  font-size: 24px;
+  color: #640032;
+  font-family: SourceSansPro-Light;
+}
+
+.profile-icons {
+  font-size: 18px;
+  color: #524a4a;
+  vertical-align: middle;
+}
+
+.courses-watched-or-watching-heading {
+  font-size: 18px;
+  color: #640032;
+  margin-top: 25px;
+  margin-right: 210px;
+  font-weight: 600;
+}
+
+.watched-courses-card {
+  position: relative;
+  width: 270px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  border: solid 1px #cccccc;
+  background-color: #ffffff;
+  margin-left: 24px;
+  margin-top: 8px;
+  float: left;
+  margin-bottom: 25px;
+}
+
+.watched-courses-card-course-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.watched-courses-card-course-container img {
+  width: 32px;
+  height: 32px;
+  margin-top: 8px;
+  border-radius: 100%;
+  margin-left: 5px;
+}
+
+.watched-courses-card .course-title {
+  height: 16px;
+  width: 100px;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  color: #555555;
+  margin-top: 10px;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-right: 5px;
+  text-align: start;
+  font-family: SourceSansPro-Light;
+}
+
+.watched-courses-card {
+  .bux-star:hover {
+    color: #640032;
+  }
+
+  .bux-placeholder:hover {
+    color: #640032;
+  }
+
+  .bux-x-close:hover {
+    color: #640032;
+  }
+}
+
+.last-edited-date {
+  text-overflow: ellipsis;
+  font-size: 9px;
+  color: #80bbdb;
+  margin-right: 25px;
+  font-style: italic;
+}
+
+.course-panel-icons {
+  align-self: flex-end;
+  float: right;
+
+  .favourite-icon {
+    font-size: 19px;
+  }
+
+  .bux-star-filled {
+    color: #f8c782;
+    font-size: 19px;
+    cursor: pointer;
+  }
+
+  .bux-star {
+    font-size: 19px;
+    cursor: pointer;
+  }
+
+  .watch-again-options-icon {
+    font-size: 19px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  .mark-as-unwatched-icon {
+    font-size: 19px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+}
+
+.bux-menu-meatball {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.bux-menu-meatball:hover {
+  color: #870a3c;
+}

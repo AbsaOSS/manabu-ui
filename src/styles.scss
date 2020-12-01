@@ -1,0 +1,617 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'stylesheets/radio.scss';
+@import 'stylesheets/alert.scss';
+@import 'stylesheets/loader.scss';
+@font-face {
+  font-family: 'SourceSansPro';
+  font-weight: normal;
+  font-style: normal;
+  src: url('./assets/fonts/SourceSansPro-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SourceSansPro-ExtraLight';
+  font-weight: normal;
+  font-style: normal;
+  src: url('./assets/fonts/SourceSansPro-ExtraLight.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SourceSansPro-Light';
+  font-weight: normal;
+  font-style: normal;
+  src: url('./assets/fonts/SourceSansPro-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ToolIconsRegularFont';
+  font-weight: normal;
+  font-style: normal;
+  src: url('./assets/fonts/Tool-Icons-Manabu-Regular.ttf') format('truetype');
+}
+
+body {
+  font-family: 'SourceSansPro';
+}
+
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #fa551e;
+  box-shadow: none;
+  border-color: #fa551e;
+  border-style: inherit;
+  min-width: 96px;
+}
+
+.btn-md {
+  min-width: 96px;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+  color: #fff;
+  background-color: #fa6634 !important;
+  border: solid 1px #fa6634;
+}
+
+.btn-secondary {
+  border: solid 1px #fa551e;
+  color: #fa551e;
+  background: transparent;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.3);
+  border: solid 1px #fa551e;
+  color: #fa551e !important;
+  background: transparent !important;
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+  background-color: #e3e2e2;
+  border: 1px solid #e3e2e2;
+  color: #9a9595;
+  pointer-events: none;
+}
+
+.site-logo {
+  width: 146px;
+  height: 32px;
+}
+
+.welcome-header {
+  font-size: 1.4rem;
+}
+
+.user-welcome-header {
+  font-size: 1rem;
+}
+
+.bux-icon {
+  font-family: 'ToolIconsRegularFont';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-decoration: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  font-size: 24px;
+  display: inline-block;
+}
+
+.profile-icon::before {
+  color: #524a4a;
+  font-family: 'Tool-Icons';
+  content: '\E708';
+}
+
+.bux-x-circle:before {
+  content: '\E610';
+}
+
+.bux-x-close:before {
+  content: '\E609';
+}
+
+.bux-tick:before {
+  content: '\E611';
+}
+
+.bux-tick-circle:before {
+  content: '\E612';
+  color: #155724;
+}
+
+.bux-tick-circle-original:before {
+  content: '\E612';
+}
+
+.bux-sort-arrow-right:before {
+  content: '\E639';
+}
+
+.bux-eye-on:before {
+  content: '\E617';
+}
+
+.bux-edit:before {
+  content: '\E720';
+}
+
+.bux-placeholder:before {
+  content: '\E501';
+}
+
+.bux-chevron-left:before {
+  content: '\E605';
+}
+
+.bux-info-circle:before {
+  content: '\E623';
+}
+
+.bux-email:before {
+  content: '\E715';
+}
+
+.bux-action-required:before {
+  content: '\E703';
+}
+
+.bux-chevron-down:before {
+  content: '\E607';
+}
+
+.bux-chevron-up:before {
+  content: '\E608';
+}
+
+.bux-arrow-right:before {
+  content: '\E606';
+}
+
+.bux-bookmark:before {
+  content: '\E808';
+}
+
+.bux-bookmark:before:hover {
+  content: '\E808';
+  color: #870a3c;
+}
+
+.bux-search:before {
+  content: '\E627';
+}
+
+.bux-video:before {
+  content: '\E822';
+}
+
+.bux-validation:before {
+  content: '\E713';
+}
+
+.bux-action-required:before {
+  content: '\E703';
+}
+
+.bux-help-circle:before {
+  content: '\E624';
+}
+
+.bux-tags:before {
+  content: '\E820';
+}
+
+.bux-quizz:before {
+  content: '\E812';
+}
+
+.bux-profile:before {
+  content: '\E708';
+}
+
+.bux-eye-on:before {
+  content: '\E617';
+}
+
+.bux-warning:before {
+  content: '\E622';
+  color: #ec7a08;
+}
+
+.bux-tick:before {
+  content: '\E611';
+}
+
+.bux-edit-filled:before {
+  content: '\E801';
+}
+
+.bux-contributors:before {
+  content: '\E817';
+}
+
+.bux-download:before {
+  content: '\E717';
+}
+
+.bux-sort-arrow:before {
+  content: '\E631';
+}
+
+.bux-modify:before {
+  content: '\E823';
+}
+
+.bux-edit:hover {
+  color: #870a3c;
+}
+
+.bux-external-link:before {
+  content: '\E625';
+}
+
+.bux-upload:before {
+  content: '\E718';
+}
+
+.bux-plus-circle:before {
+  content: '\E614';
+}
+
+.bux-minus-circle:before {
+  content: '\E616';
+}
+
+.bux-delete-trash::before {
+  content: '\E742';
+}
+
+.bux-star:before {
+  content: '\E634';
+}
+
+.bux-star-filled:before {
+  content: '\E635';
+}
+
+.bux-menu-meatball:before {
+  content: '\E621';
+}
+
+.bux-ribbon-certified:before {
+  content: '\E745';
+}
+
+.image-icon:before {
+  content: '\E819';
+}
+
+.bux-tick:before {
+  content: '\E611';
+}
+
+.bux-edit:hover {
+  color: #870a3c;
+}
+
+.bux-chevron-down:hover {
+  color: #870a3c;
+}
+
+.bux-delete-trash:hover {
+  color: #870a3c;
+}
+
+.bux-external-link:hover {
+  color: #870a3c;
+}
+
+.modal-header .close::after {
+  font-family: ToolIconsRegularFont;
+  content: '\E609';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.main-icon {
+  text-align: center;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+.modal-header .close {
+  padding: 0px;
+  margin: 0px;
+}
+
+.modal-dialog {
+  margin: 1.75rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+  min-height: calc(100vh - 60px);
+  @media (min-width: 576px) {
+    .modal-dialog {
+      min-height: calc(100vh - 20px);
+      margin: 1.75rem auto;
+    }
+  }
+  .modal-content {
+    background-color: #fff;
+    border-radius: 0.3rem;
+    outline: 0;
+    height: auto;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 80%;
+    .modal-header {
+      padding: 0px;
+      margin: 32px 0 0 0;
+    }
+    .modal-body {
+      padding: 0 32px;
+    }
+    .header-icon {
+      margin-bottom: 12px;
+      .bux-header-icon {
+        font-size: 48px;
+        color: #af144b;
+      }
+      .header-text {
+        font-size: 24px;
+        color: #2d2323;
+      }
+    }
+    .modal-header .close::after {
+      color: #9a9595;
+    }
+    .modal-footer {
+      margin-top: 0px;
+      padding: 0 32px 32px 32px;
+    }
+  }
+}
+
+.toast-container .ngx-toastr {
+  color: #51a351;
+}
+
+.toast-success,
+.toast-error {
+  background: #fff;
+}
+
+.toast-error {
+  color: red;
+  height: auto;
+  width: 300px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px 10px grey;
+}
+
+.button.toast-close-button {
+  color: #000;
+}
+
+.toast-close-button {
+  color: #000;
+}
+
+.no-content {
+  margin-top: 24px;
+  color: #870a3c;
+  text-align: center;
+}
+
+.logout-button {
+  background-color: #f6f6f6;
+  border-radius: 0 0 4px 4px;
+  width: 1rem;
+  border: 1px solid #af144b;
+  padding: 4px;
+  height: 34px;
+  color: #af144b;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  min-width: 80px;
+}
+
+.logout-button:hover {
+  transform: scale(1.025, 1.025);
+  background-color: #f6f6f6;
+  color: #af144b;
+}
+
+img {
+  max-width: 900px;
+  max-height: 600px;
+}
+
+.lesson-markdown h1 {
+  font-size: 18px;
+}
+
+.btn-lesson-next {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  float: right;
+  cursor: pointer;
+}
+
+.btn-lesson-previous {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  float: left;
+  cursor: pointer;
+}
+
+.no-margin {
+  margin: 0px;
+}
+
+.eye-background {
+  background-color: #7acc91;
+  border-radius: 32px;
+  color: #fff;
+  font-size: 16px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tick-background {
+  background: hsl(255, 2%, 67%);
+  border-radius: 20px;
+  color: #fff;
+}
+
+.arrow-background {
+  background: #870a3c;
+  font-size: 16px;
+  padding: 2px;
+  border-radius: 32px;
+  z-index: 1000;
+}
+
+.active-arrow-background {
+  background: #7acc91;
+  font-size: 16px;
+  padding: 2px;
+  border-radius: 32px;
+  z-index: 1000;
+}
+
+.in-progress-icon-background {
+  background: #fa551e;
+  font-size: 16px;
+  padding: 2px;
+  border-radius: 32px;
+  z-index: 1000;
+}
+
+.ck-editor__editable_inline {
+  min-height: 300px !important;
+}
+
+.iframe-container {
+  width: 100%;
+}
+
+[data-initials]:before {
+  background: whitesmoke;
+  color: #870a3c;
+  opacity: 1;
+  content: attr(data-initials);
+  display: inline-block;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  line-height: 56px;
+  font-size: 30px;
+  text-align: center;
+  border: solid 2px #f28f06;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+  padding-bottom: 4px;
+  color: #870a3c;
+  margin-left: 14px;
+  margin-right: 14px;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #870a3c;
+  margin: 12px 0px;
+  margin-left: 14px;
+  margin-right: 14px;
+}
+
+h4 {
+  font-size: 16px;
+  color: #870a3c;
+  margin: 32px 0px;
+  margin-left: 14px;
+  margin-right: 14px;
+}
+
+.image > img {
+  border: 2px solid #870a3c;
+  margin-left: 14px;
+  margin-right: 14px;
+}
+
+.lesson-markdown p {
+  margin-left: 14px;
+  margin-right: 14px;
+}
+
+hr {
+  border-top: 1px solid #c4c4c4;
+  margin-left: 14px;
+  margin-right: 14px;
+}
+
+pre {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  padding: 1em;
+  color: #353535;
+  border: 1px solid #c4c4c4;
+  border-radius: 6px;
+  background: hsla(0, 0%, 78%, 0.3);
+  margin-left: 14px;
+  margin-right: 14px;
+}
+
+input[type='text']:not(.browser-default) {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  border-radius: 0;
+  outline: none;
+  height: 3rem;
+  width: 100%;
+  font-size: 16px;
+  margin: 0 0 8px 0;
+  padding: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-transition: border 0.3s, -webkit-box-shadow 0.3s;
+  transition: border 0.3s, -webkit-box-shadow 0.3s;
+  transition: box-shadow 0.3s, border 0.3s;
+  transition: box-shadow 0.3s, border 0.3s, -webkit-box-shadow 0.3s;
+}
+
+input[type='text']:not(.browser-default):focus {
+  border-bottom: 1px solid #870a3c;
+  box-shadow: 0 1px 0 0 #870a3c;
+}

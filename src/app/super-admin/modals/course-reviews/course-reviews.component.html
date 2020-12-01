@@ -1,0 +1,38 @@
+<div class="main-review-content-container">
+  <div class="modal-header modal-dismiss-buton">
+    <button type="button" class="close" (click)="activeModal.dismiss()"></button>
+  </div>
+  <span *ngIf="loadingIndicator === IndicatorState.LOADING">
+    <app-loader></app-loader>
+  </span>
+  <div *ngIf="loadingIndicator === IndicatorState.LOADED && courseReviews.length === 0" class="no-reviews">
+    There are no reviews for this course.
+  </div>
+  <div *ngIf="loadingIndicator === IndicatorState.LOADED && courseReviews.length !== 0" class="course-reviews-header">
+    Course Reviews
+  </div>
+  <div *ngIf="loadingIndicator === IndicatorState.LOADED && courseReviews.length !== 0" class="reviews-content">
+    <div class="container" *ngFor="let review of courseReviews">
+      <div class="user-details">{{ review.userName }} {{ review.userSurname }}</div>
+      <div class="comment">{{ review.userComment }}</div>
+      <div class="date">{{ review.date | date }}</div>
+      <ul class="list-inline reviews-ratings">
+        <li [ngClass]="{ selected: 5 <= review.userRating }">
+          <i class="bux-icon bux-star-filled"></i>
+        </li>
+        <li [ngClass]="{ selected: 4 <= review.userRating }">
+          <i class="bux-icon bux-star-filled"></i>
+        </li>
+        <li [ngClass]="{ selected: 3 <= review.userRating }">
+          <i class="bux-icon bux-star-filled"></i>
+        </li>
+        <li [ngClass]="{ selected: 2 <= review.userRating }">
+          <i class="bux-icon bux-star-filled"></i>
+        </li>
+        <li [ngClass]="{ selected: 1 <= review.userRating }">
+          <i class="bux-icon bux-star-filled"></i>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

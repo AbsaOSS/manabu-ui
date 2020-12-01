@@ -1,0 +1,36 @@
+.rating-list li {
+    padding: 16px 12px;
+}
+
+.rating-list li:hover,
+.rating-list li:hover~li,
+.rating-list li.selected {
+    color: #f8c782;
+}
+
+.rating-list {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    list-style: none;
+}
+
+.course-img {
+    height: 5rem;
+    width: 5rem;
+    align-self: flex-end;
+}
+
+.course-title {
+    color: #640032;
+    font-size: 18px;
+}
+
+.comment {
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    border: 1px solid #c4c4c4;
+    background-color: #fff;
+    border-radius: 5px;
+}
+

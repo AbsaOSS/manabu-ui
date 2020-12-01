@@ -1,0 +1,58 @@
+.site-logo {
+  cursor: pointer;
+}
+.main-header-content-container {
+  display: flex;
+  flex-direction: row;
+  padding: 12px;
+  justify-content: space-between;
+}
+
+.navbar-functional-links {
+  display: flex;
+  flex-direction: row;
+  align-items: inherit;
+  .bux-info-circle {
+    cursor: pointer;
+    margin-right: 12px;
+    margin-top: 4px;
+    font-size: 28px;
+    color: #af144b;
+  }
+
+  .bux-info-circle:hover {
+    color: #870a3c;
+    font-size: 30px;
+  }
+
+  .bell-notification-and-alerts-container {
+    position: relative;
+    display: inline-block;
+    .notification-count-container {
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      top: 4px;
+      right: 8px;
+      padding: 2px;
+      border-radius: 50%;
+      background-color: red;
+      color: white;
+      text-align: center;
+      font-size: 10px;
+    }
+
+    .bux-icon {
+      cursor: pointer;
+      margin-right: 12px;
+      margin-top: 4px;
+      font-size: 28px;
+      color: #af144b;
+    }
+
+    .bux-icon:hover {
+      color: #870a3c;
+      font-size: 30px;
+    }
+  }
+}

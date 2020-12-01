@@ -1,0 +1,42 @@
+.admin-personal-details-view {
+  .row {
+    .content {
+      display: none;
+    }
+  }
+  .admin-view-menu {
+    display: none;
+  }
+}
+
+.user-view {
+  .row {
+    .content {
+      display: none;
+    }
+
+    .admin-side-panel {
+      display: none;
+    }
+  }
+
+  .admin-view-menu {
+    display: none;
+  }
+}
+
+.admin-user-view {
+  .row {
+    .content {
+      display: none;
+    }
+
+    .admin-side-panel {
+      display: none;
+    }
+  }
+
+  .admin-view-menu {
+    display: none;
+  }
+}

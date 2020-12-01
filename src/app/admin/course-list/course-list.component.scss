@@ -1,0 +1,271 @@
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.edit-course-icon {
+  padding-left: 12px;
+  cursor: pointer;
+}
+
+.delete-icon-space {
+  padding-left: 0px;
+}
+
+.pencil-filled {
+  color: #870a3c;
+}
+
+.course-item-container {
+  padding-left: 24px;
+}
+
+.course-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.course-container {
+  width: 100%;
+}
+
+.item-detail {
+  display: block;
+  flex: 0 1 auto;
+  display: inline-flex;
+  align-items: center;
+  padding-top: 12px;
+  padding-right: 8px;
+}
+
+.item-detail-tag-list {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.item-detail-icon-front {
+  width: 5%;
+  cursor: pointer;
+}
+
+.item-detail-image {
+  width: 4%;
+  border-radius: 24px;
+}
+
+.item-detail-title {
+  width: 20%;
+}
+
+.active-detail-edit-icon-placement {
+  margin-top: 30px;
+}
+
+.item-detail-description {
+  width: 30%;
+  font-size: 14px;
+  color: #9a9595;
+}
+
+.item-detail-tag-list {
+  width: 25%;
+}
+
+.course-title {
+  font-size: 14px;
+  align-self: flex-start;
+  font-weight: bold;
+}
+
+.detail-container {
+  display: inline-flex;
+  align-items: center;
+}
+
+.tag-value {
+  color: #f28f06;
+  font-size: 24px;
+  padding-right: 4px;
+  font-family: SourceSansPro-Light;
+}
+
+.tag-icon {
+  padding-right: 8px;
+  padding-top: 12px;
+}
+
+.user-stats-item-detail-tag-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-stats-item-detail-image {
+  width: 8%;
+  border-radius: 24px;
+  align-self: flex-start;
+}
+
+.user-stats-course-title {
+  font-size: 14px;
+  font-style: bold;
+}
+
+.user-stats-item-detail-title {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin-left: 25px;
+}
+
+.user-stats-course-title {
+  font-size: 14px;
+  align-self: flex-start;
+}
+
+.user-stats-item-detail {
+  display: block;
+  flex: 0 1 auto;
+  display: inline-flex;
+  align-items: center;
+  padding-top: 12px;
+  padding-right: 8px;
+}
+
+.user-stats-course-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.active-item {
+  width: 8%;
+}
+
+.active-text {
+  color: #f28f06;
+  font-size: 15px;
+  padding-right: 6px;
+}
+
+.inactive-text {
+  color: grey;
+  font-size: 15px;
+  padding-right: 6px;
+}
+
+.icon-alignment {
+  margin-top: 10px;
+  font-size: 20px;
+  padding-left: 3;
+}
+
+.course-activation {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 4px 0px 0px;
+}
+
+.user-course-stats-open {
+  color: #870a3c;
+}
+
+.display-none {
+  display: none;
+}
+
+.chevron-icons {
+  cursor: pointer;
+  padding-left: 28px;
+}
+
+.last-edited-date {
+  text-overflow: ellipsis;
+  font-size: 9px;
+  color: #80bbdb;
+  align-self: flex-start;
+}
+
+.user-stats-item-detail-tag-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: 300px;
+}
+
+.bux-edit-filled {
+  color: #870a3c;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  margin-top: 8px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 16px;
+  width: 16px;
+  top: 2px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #59bf75;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #59bf75;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(18px);
+  -ms-transform: translateX(18px);
+  transform: translateX(18px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

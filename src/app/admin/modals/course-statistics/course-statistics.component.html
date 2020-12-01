@@ -1,0 +1,52 @@
+<div class="modal-header">
+  <div class="header-icon mx-auto">
+    <div class="main-icon">
+      <i class="bux-icon bux-header-icon bux-placeholder"></i>
+    </div>
+    <div class="header-text">Course Statistics</div>
+  </div>
+  <button type="button" class="close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body">
+  <div class="body-text mx-auto">
+    <ngx-charts-bar-vertical-stacked
+      *ngIf="courseLength < 9 "
+      [scheme]="colorScheme"
+      [results]="graphDisplayValues"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [showGridLines]="showGridLines"
+      [animations]="animations"
+      [trimYAxisTicks]="true"
+      [noBarWhenZero]="true"
+    >
+    </ngx-charts-bar-vertical-stacked>
+    <ngx-charts-bar-vertical-stacked
+      *ngIf="courseLength > 8"
+      [scheme]="colorScheme"
+      [results]="graphDisplayValues"
+      [gradient]="gradient"
+      [xAxis]="true"
+      [yAxis]="showYAxis"
+      [showGridLines]="showGridLines"
+      [animations]="animations"
+      [trimYAxisTicks]="true"
+      [noBarWhenZero]="true"
+    >
+    </ngx-charts-bar-vertical-stacked>
+  </div>
+  <div
+    [ngClass]="{
+      'image-legend-container-5': courseLength === 5,
+      'image-legend-container-6': courseLength === 6,
+      'image-legend-container-7': courseLength === 7,
+      'image-legend-container-8': courseLength === 8,
+      'display-none': courseLength > 8
+    }"
+  >
+    <span *ngFor="let course of courseItems" class="image-legend-holder">
+      <img class="image-legend" [src]="course.image" />
+    </span>
+  </div>
+</div>

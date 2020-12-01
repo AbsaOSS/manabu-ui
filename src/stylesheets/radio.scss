@@ -1,0 +1,147 @@
+.cb-container {
+  display: block;
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #2e3135;
+  font-family: 'SourceSansPro', sans-serif;
+}
+
+.cb-container.disabled {
+  cursor: default;
+}
+
+/* Hide the browser's default radio button */
+.cb-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: #fff;
+  border: 2px solid #640032;
+  border-radius: 50%;
+}
+
+.checkmark.disabled {
+  border: 2px solid #ddd;
+  cursor: default;
+}
+
+/* On mouse-over */
+.cb-container:hover input ~ .checkmark {
+  background-color: #fff;
+  border: 2px solid #af144b;
+}
+
+.cb-container:hover input ~ .checkmark.disabled {
+  background-color: #fff;
+  border: 2px solid #ddd;
+  cursor: default;
+}
+
+/* When the radio button is checked, add a background */
+.cb-container input:checked ~ .checkmark {
+  background-color: #fff;
+  border: 2px solid #640032;
+}
+.cb-container input:checked:focus ~ .checkmark {
+  border-color: #2f9fff;
+}
+
+.cb-container input:checked ~ .checkmark.disabled {
+  background-color: #fff;
+  border: 2px solid #ddd;
+  cursor: default;
+}
+
+.cb-container input:checked ~ .checkmark:hover {
+  background-color: #fff;
+  border: 2px solid #af144b;
+}
+
+.cb-container input:checked ~ .checkmark.disabled:hover {
+  background-color: #fff;
+  border: 2px solid #ddd;
+  cursor: default;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+.checkmark:hover {
+  background-color: #af144b;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.cb-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.cb-container .checkmark:after {
+  top: 2px;
+  left: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #640032;
+}
+
+.cb-container input:checked:focus ~ .checkmark:after {
+  background: #2f9fff;
+}
+
+.cb-container .checkmark.disabled:after {
+  top: 2px;
+  left: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ddd;
+  cursor: default;
+}
+
+.cb-container .checkmark:hover:after {
+  top: 2px;
+  left: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #af144b;
+}
+
+.cb-container .checkmark.disabled:hover:after {
+  top: 2px;
+  left: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ddd;
+  cursor: default;
+}
+
+.form-check-inline {
+  margin-right: 48px;
+}
+
+.cb-container:last-of-type {
+  margin-bottom: 24px;
+}

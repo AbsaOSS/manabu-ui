@@ -1,0 +1,231 @@
+<app-personal-info-welcome></app-personal-info-welcome>
+<div class="user-personal-info-content-container">
+  <div class="user-personal-details-container">
+    <span *ngIf="loadingIndicator === IndicatorState.LOADING">
+      <app-loader></app-loader>
+    </span>
+    <div *ngIf="loadingIndicator === IndicatorState.LOADED" class="user-personal-details-content-container">
+      <div class="profile-card">
+        <div class="upper-profile-card">
+          <div placement="top" ngbTooltip="upload image" class="profile-pic">
+            <span class="profile-image-upper-layer"><i class="bux-icon image-icon"></i></span>
+            <div
+              *ngIf="userInfo.image === '' && imageFile == undefined"
+              (click)="uploadUserImage()"
+              [attr.data-initials]="[userInfo.initials]"
+            ></div>
+            <img
+              class="user-profile-image"
+              *ngIf="imageFile !== undefined"
+              (click)="uploadUserImage()"
+              [src]="imageFile"
+            />
+            <img
+              class="user-profile-image"
+              *ngIf="userInfo.image !== '' && imageFile === undefined"
+              (click)="uploadUserImage()"
+              [src]="userInfo.image"
+            />
+          </div>
+          <div class="profile-meta">
+            <div class="profile-name">{{ userInfo.name }} {{ userInfo.surname }}</div>
+            <div class="user-role">{{ userInfo.email }}</div>
+          </div>
+        </div>
+        <div class="lower-profile-card">
+          <div class="profile-stats">
+            <div class="profile-quick-stats">
+              {{ numberOfCoursesAdminIsWatching | singleDigit }}
+              <span class="profile-icons" ngbTooltip="Watching">
+                <i class="bux-icon bux-eye-on"></i>
+              </span>
+            </div>
+
+            <div class="profile-quick-stats">
+              {{ numberOfCoursesCompletedByAdmin | singleDigit }}
+
+              <span class="profile-icons" ngbTooltip="Watched">
+                <i class="bux-icon bux-ribbon-certified"></i>
+              </span>
+            </div>
+
+            <div class="profile-quick-stats">
+              {{ numberOfAdminsFavouriteCourses | singleDigit }}
+
+              <span class="profile-icons" ngbTooltip="Favourites">
+                <i class="bux-icon bux-star"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="user-personal-details">
+        <p class="user-personal-details-heading">My details</p>
+        <p class="user-personal-info">
+          <span class="user-profile-image-upload" (click)="uploadUserImage()">Update Profile Pic</span>
+        </p>
+
+        <p class="user-personal-info"><span class="user-personal-info-label">Email : </span>{{ userInfo.email }}</p>
+
+        <span
+          [ngClass]="{
+            'user-personal-info-url-is-edited-container': userUrlLinkIsBeingEdited,
+            'user-personal-info-url-not-edited-container': !userUrlLinkIsBeingEdited
+          }"
+        >
+          <p class="user-personal-info-label">Url Link :</p>
+          <span class="user-url-content-container">
+            <input
+              class="user-external-bio-input"
+              type="text"
+              placeholder="Url link..."
+              [(ngModel)]="userInfo.profileUrlLink"
+            />
+            <a [href]="userInfo.profileUrlLink" class="user-external-bio">{{
+              userInfo.abbreviatedProflileUrlLink !== undefined
+                ? userInfo.abbreviatedProflileUrlLink
+                : userInfo.profileUrlLink
+            }}</a>
+            <span class="update-icon-action" ngbTooltip="edit" (click)="reviewProfileUpdateStatus('BIO', userInfo)"
+              ><i class="bux-icon bux-edit"></i
+            ></span>
+            <span class="update-icon-action" ngbTooltip="update" (click)="reviewProfileUpdateStatus('BIO', userInfo)"
+              ><i class="bux-icon bux-plus-circle"></i
+            ></span>
+          </span>
+        </span>
+
+        <span
+          [ngClass]="{
+            'user-personal-info-about-section-is-edited-container': userAboutIsBeingEdited,
+            'user-personal-info-about-section-not-edited-container': !userAboutIsBeingEdited
+          }"
+        >
+          <span class="user-personal-info-label">About : </span>
+          <span class="user-personal-info-about-content-container">
+            <textarea
+              class="user-about-input"
+              placeholder="About yourself..."
+              [(ngModel)]="userInfo.aboutAuthor"
+            ></textarea>
+            <p class="user-about">
+              {{
+                userInfo.abbreviatedAboutAuthor !== undefined ? userInfo.abbreviatedAboutAuthor : userInfo.aboutAuthor
+              }}
+            </p>
+            <span class="update-icon-action" ngbTooltip="edit" (click)="reviewProfileUpdateStatus('ABOUT', userInfo)"
+              ><i class="bux-icon bux-edit"></i
+            ></span>
+            <span class="update-icon-action" ngbTooltip="update" (click)="reviewProfileUpdateStatus('ABOUT', userInfo)"
+              ><i class="bux-icon bux-plus-circle"></i
+            ></span>
+          </span>
+        </span>
+      </div>
+
+      <div *ngIf="usersFavouriteCourses.length > 0" class="user-favourite-courses-container">
+        <p class="user-favourite-courses-heading">My Favourites</p>
+
+        <div *ngFor="let course of usersFavouriteCourses" class="favourite-course-container">
+          <span class="favourite-course-image-container"><img [src]="course.image" /></span>
+          <span class="favourite-course-title-and-date-container">
+            <span class="favourite-course-title">{{ course.courseName }}</span>
+            <span class="favourite-course-date">{{ course.createdAt | date: 'fullDate' }}</span>
+          </span>
+          <span class="favourite-course-icon"><i class="bux-icon bux-star-filled"></i></span>
+          <span class="favourite-course-icon"
+            ><i class="bux-icon bux-placeholder" ngbTooltip="Watch again" (click)="viewCourse(course.courseId)"></i
+          ></span>
+          <span class="favourite-course-icon"
+            ><i class="bux-icon bux-x-close" ngbTooltip="Mark as unwatched" (click)="confirmCourseRemoval(course)"></i
+          ></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="user-course-activity-container">
+    <span *ngIf="loadingIndicator === IndicatorState.LOADING">
+      <app-loader></app-loader>
+    </span>
+    <div *ngIf="loadingIndicator === IndicatorState.LOADED" class="user-course-activity-content-container">
+      <div *ngIf="usersCompletedCourses.length > 0" class="user-course-achievement">
+        <p class="user-course-achievement-heading">Achievements</p>
+        <div class="user-course-achievements-container">
+          <div *ngFor="let course of usersCompletedCourses">
+            <div class="user-achieved-course-card">
+              <div class="upper-user-achieved-course-card"><img [src]="course.image" /></div>
+              <div class="lower-user-achieved-course-card">
+                <span class="user-achieved-course-title">{{ course.courseName }}</span>
+                <span class="user-achieved-course-date">{{ course.createdAt | date: 'fullDate' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="user-course-progress-container">
+        <div *ngIf="usersActiveCourses.length > 0" class="user-course-progress-content">
+          <div class="user-course-progress">
+            <p class="user-course-progress-heading">In progress</p>
+
+            <div *ngFor="let course of usersActiveCourses" class="user-course-in-progress-card">
+              <div class="user-course-in-progress-content-container" (click)="viewCourse(course.id)">
+                <div class="user-course-in-progress-image-container">
+                  <img class="user-course-in-progress-image" [src]="course.image" />
+                  <img class="play-image" src="/api/uploads/group-13@2x.png" />
+                </div>
+
+                <div class="user-course-in-progress-meta">
+                  <div class="user-course-in-progress-title">{{ course.title }}</div>
+                  <div class="user-course-in-progress-progressbar">
+                    <ngb-progressbar
+                      [value]="[course.percentageCompleted]"
+                      [max]="100"
+                      [showValue]="false"
+                      height=".4rem"
+                    ></ngb-progressbar>
+                  </div>
+                  <span class="user-course-in-progress-completion-fraction"
+                    >{{ course.progress }}/{{ course.totalLessons }}</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="user-performance-stats-graph-container">
+          <p class="user-performance-stats-heading">My Stats</p>
+
+          <div class="user-performance-stats-graph">
+            <div class="user-performance-stats-graph-legend">
+              <p><span class="performance-stats-community-legend"></span> Top user</p>
+              <p><span class="performance-stats-user-legend"></span> My rank</p>
+            </div>
+            <ngx-charts-bar-vertical-stacked
+              [view]="view"
+              [scheme]="colorScheme"
+              [results]="graphDisplayValues"
+              [gradient]="gradient"
+              [xAxis]="showXAxis"
+              [yAxis]="showYAxis"
+              [showGridLines]="showGridLines"
+              [animations]="animations"
+              [trimYAxisTicks]="true"
+              [noBarWhenZero]="true"
+            >
+            </ngx-charts-bar-vertical-stacked>
+
+            <div class="user-performance-stats-graph-labels-container">
+              <span class="user-performance-stats-graph-iconse"><i class="bux-icon bux-placeholder"></i></span>
+              <span class="user-performance-stats-graph-iconse"><i class="bux-icon bux-ribbon-certified"></i></span>
+              <span class="user-performance-stats-graph-iconse"><i class="bux-icon bux-quizz"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

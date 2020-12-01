@@ -1,0 +1,13 @@
+<div class="side-panel" [@drawerPanel]="{ value: state, params: { width: width } }" [style.width]="width">
+  <div class="side-panel-content">
+    <ng-content></ng-content>
+    <div
+      (click)="onToggle()"
+      class="panel-arrow"
+      [@slideButton]="{ value: state, params: { width: width } }"
+      container="body"
+    >
+      <i [ngClass]="{ 'bux-profile': state === 'hide', 'bux-arrow-right': state === 'show' }" class="bux-icon"></i>
+    </div>
+  </div>
+</div>

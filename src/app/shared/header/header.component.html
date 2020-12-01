@@ -1,0 +1,30 @@
+<div class="main-header-content-container bg-white border-bottom box-shadow">
+  <div class="home-button-container font-weight-normal">
+    <img (click)="homeClicked()" id="manabu-logo" class="site-logo" src="/assets/images/manabu_logo.png" />
+  </div>
+
+  <nav class="navbar-functional-links mr-md-3">
+    <div class="switch-button-container">
+      <span
+        *ngIf="isAdminViewing && isAdminViewKey === 'true'"
+        (click)="switchAdminView()"
+        ngbTooltip="switch to user view"
+        class="admin-view-switch-link"
+        ><i class="bux-icon bux-info-circle"></i
+      ></span>
+      <span
+        *ngIf="isAdminViewing && isAdminViewKey === 'false'"
+        (click)="switchAdminView()"
+        ngbTooltip="switch to admin view"
+        class="admin-view-switch-link"
+        ><i class="bux-icon bux-info-circle"></i
+      ></span>
+    </div>
+
+    <div (click)="viewNotifications()" ngbTooltip="notifications" class="bell-notification-and-alerts-container">
+      <span><i class="bux-icon bux-action-required"></i></span
+      ><span *ngIf="notifications !== 0" class="notification-count-container">{{ notifications }}</span>
+    </div>
+    <span class="btn logout-button" (click)="logout()">Logout</span>
+  </nav>
+</div>

@@ -1,0 +1,13 @@
+<div class="container">
+  <div *ngIf="courses && courses.length === 0" class="no-content">
+    <p>There are currently no active courses...</p>
+  </div>
+  <span *ngIf="loadingIndicator === IndicatorState.LOADING">
+    <app-loader></app-loader>
+  </span>
+  <app-course-list-analysis
+    [courses]="courses"
+    [loadingIndicator]="loadingIndicator"
+    [courseStats]="true"
+  ></app-course-list-analysis>
+</div>

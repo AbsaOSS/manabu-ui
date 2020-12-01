@@ -1,0 +1,592 @@
+.bux-edit-filled {
+  color: #870a3c;
+}
+
+.user-personal-info-content-container {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  .user-personal-details-container {
+    padding: 20px;
+    height: 100vh;
+    width: 30%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    .user-personal-details-content-container {
+      display: flex;
+      flex-direction: column;
+      width: fit-content;
+      min-height: calc(100vh - 200px);
+      padding-top: 34px;
+      padding-bottom: 20vh;
+      .profile-card {
+        right: 30px;
+        left: 24px;
+        padding-top: 20px;
+        width: 362px;
+        height: 136px;
+        background-color: #ffffff;
+        border-radius: 4px;
+        border: solid 1px #cccccc;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+      }
+      .upper-profile-card {
+        display: flex;
+        flex-direction: row;
+        border-bottom: 2px solid #f6f6f6;
+        .profile-pic {
+          height: 60px;
+          margin-left: 12px;
+          margin-bottom: 10px;
+          cursor: pointer;
+          .profile-image-upper-layer {
+            display: none;
+          }
+        }
+        .user-profile-image {
+          height: 60px;
+          width: 60px;
+          border-radius: 50%;
+          border: solid 2px #870a3c;
+          cursor: pointer;
+        }
+        .profile-pic:hover {
+          .profile-image-upper-layer {
+            display: flex;
+            position: absolute;
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+            height: 30px;
+            width: 60px;
+            border-top-left-radius: 60px;
+            border-top-right-radius: 60px;
+            background-color: rgba(82, 74, 74, 0.8);
+            .image-icon {
+              color: white;
+            }
+          }
+        }
+        [data-initials]:before {
+          border: solid 2px #640032;
+        }
+        .profile-meta {
+          display: flex;
+          flex-direction: column;
+          margin-top: 12px;
+          margin-left: 16px;
+          text-align: start;
+          .profile-name {
+            align-self: flex-start;
+            color: #640032;
+            line-height: 20px;
+            font-size: 20px;
+            width: 180px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          .user-role {
+            width: 180px;
+            font-size: 14px;
+            line-height: 20px;
+            color: #888888;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+        .bux-menu-meatball {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          cursor: pointer;
+        }
+      }
+      .lower-profile-card {
+        height: 54px;
+        text-align: center;
+        .profile-stats {
+          height: 24px;
+          width: 100%;
+          flex-direction: row;
+          margin-top: 8px;
+          display: flex;
+          text-align: center;
+          justify-content: space-around;
+          position: relative;
+          .profile-quick-stats {
+            font-size: 24px;
+            color: #640032;
+            font-family: SourceSansPro-Light;
+            .profile-icons {
+              font-size: 18px;
+              color: #524a4a;
+              vertical-align: middle;
+            }
+          }
+        }
+      }
+      .user-personal-details {
+        margin-top: 50px;
+        .user-personal-details-heading {
+          margin-bottom: 24px;
+          color: #640032;
+          font-size: 18px;
+        }
+        .user-personal-info {
+          color: #555555;
+          margin-right: 8px;
+          font-size: 12px;
+          width: 300px;
+          .user-personal-info-label {
+            color: #9a9595;
+            font-size: 12px;
+          }
+        }
+        .user-personal-info-url-is-edited-container {
+          display: flex;
+          flex-direction: row;
+          align-items: baseline;
+          position: relative;
+          margin-bottom: 8px;
+          .user-personal-info-label {
+            color: #9a9595;
+            margin-right: 8px;
+            font-size: 12px;
+          }
+          .user-url-content-container {
+            display: flex;
+            flex-direction: row;
+            .user-external-bio-input {
+              color: #555555;
+              font-size: 12px;
+            }
+            .user-external-bio {
+              display: none;
+            }
+            input[type='text'] {
+              height: 1rem;
+              width: 290px;
+              margin-right: 8px;
+            }
+            .update-icon-action .bux-edit {
+              display: none;
+            }
+            .update-icon-action .bux-plus-circle {
+              font-size: 16px;
+              cursor: pointer;
+            }
+            .update-icon-action .bux-plus-circle:hover {
+              color: #870a3c;
+            }
+          }
+        }
+        .user-personal-info-url-not-edited-container {
+          display: flex;
+          flex-direction: row;
+          align-items: baseline;
+          position: relative;
+          .user-personal-info-label {
+            color: #9a9595;
+            margin-right: 8px;
+            font-size: 12px;
+          }
+          .user-url-content-container {
+            display: flex;
+            flex-direction: row;
+            .user-external-bio-input {
+              display: none;
+            }
+            .user-external-bio {
+              color: red;
+              font-size: 12px;
+            }
+            .update-icon-action .bux-edit {
+              font-size: 16px;
+              cursor: pointer;
+            }
+            .update-icon-action .bux-plus-circle {
+              display: none;
+            }
+          }
+        }
+        .user-personal-info-about-section-is-edited-container {
+          display: flex;
+          flex-direction: row;
+          align-items: baseline;
+          position: relative;
+          width: 500px;
+          .user-personal-info-label {
+            color: #9a9595;
+            margin-right: 8px;
+            font-size: 12px;
+            align-self: end;
+          }
+          .user-personal-info-about-content-container {
+            display: flex;
+            flex-direction: row;
+            .user-about-input {
+              color: #555555;
+              font-size: 12px;
+            }
+            .user-about {
+              display: none;
+            }
+            textarea {
+              width: 300px;
+              height: 160px;
+              margin-right: 8px;
+            }
+            .update-icon-action .bux-edit {
+              display: none;
+            }
+            .update-icon-action .bux-plus-circle {
+              font-size: 16px;
+              cursor: pointer;
+            }
+            .update-icon-action .bux-plus-circle:hover {
+              color: #870a3c;
+            }
+          }
+        }
+        .user-personal-info-about-section-not-edited-container {
+          display: flex;
+          flex-direction: row;
+          align-items: baseline;
+          position: relative;
+          .user-personal-info-label {
+            color: #9a9595;
+            margin-right: 8px;
+            font-size: 12px;
+          }
+          .user-personal-info-about-content-container {
+            display: flex;
+            flex-direction: row;
+            .user-about-input {
+              display: none;
+            }
+            .user-about {
+              color: #555555;
+              font-size: 12px;
+            }
+            .update-icon-action .bux-edit {
+              font-size: 16px;
+              cursor: pointer;
+              position: relative;
+            }
+            .update-icon-action .bux-plus-circle {
+              display: none;
+            }
+          }
+        }
+      }
+      .user-favourite-courses-container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        .user-favourite-courses-heading {
+          margin-bottom: 24px;
+          color: #640032;
+          font-size: 18px;
+        }
+        .favourite-course-container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          position: relative;
+          margin-bottom: 18px;
+          width: 300px;
+          justify-content: space-between;
+          .favourite-course-image-container img {
+            width: 32px;
+            height: 32px;
+            margin-right: 6px;
+          }
+          .favourite-course-title-and-date-container {
+            display: flex;
+            flex-direction: column;
+            .favourite-course-title {
+              height: 16px;
+              width: 100px;
+              text-overflow: ellipsis;
+              font-size: 12px;
+              color: #555555;
+              margin-bottom: 4px;
+              white-space: nowrap;
+              overflow: hidden;
+              margin-right: 5px;
+              text-align: start;
+              font-family: SourceSansPro-Light;
+            }
+            .favourite-course-date {
+              text-overflow: ellipsis;
+              font-size: 9px;
+              color: #80bbdb;
+              margin-right: 25px;
+              font-style: italic;
+            }
+          }
+          .favourite-course-icon {
+            margin-right: 6px;
+            .bux-star-filled {
+              color: #f8c782;
+            }
+            .bux-x-close {
+              cursor: pointer;
+            }
+            .bux-placeholder {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+  .user-course-activity-container {
+    width: 70%;
+    height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: calc(110vh - 200px);
+    .user-course-activity-content-container {
+      display: flex;
+      flex-direction: column;
+      background-color: #f8f9fa;
+      padding-bottom: 24vh;
+      min-height: calc(110vh - 200px);
+      .user-course-achievement {
+        border-bottom: 2px solid #ccc;
+        padding-bottom: 24px;
+        .user-course-achievements-container {
+          display: flex;
+          flex-direction: row;
+          margin-left: 24px;
+          margin-right: 24px;
+          overflow-x: scroll;
+          overflow-y: hidden;
+          white-space: nowrap;
+          .user-achieved-course-card {
+            width: 150px;
+            height: 160px;
+            margin-right: 12px;
+            background-color: #ffffff;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+            border: 1px solid #cccc;
+            .upper-user-achieved-course-card {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-bottom: 2px solid #f6f6f6;
+              padding: 10px;
+              img {
+                width: 64px;
+                height: 64px;
+              }
+            }
+            .lower-user-achieved-course-card {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              padding-top: 20px;
+              .user-achieved-course-title {
+                font-family: SourceSansPro-Light;
+                font-size: 14px;
+                text-align: center;
+                white-space: pre-line;
+              }
+              .user-achieved-course-date {
+                font-size: 10px;
+                color: #80bbdb;
+                text-align: center;
+                white-space: pre-line;
+              }
+            }
+          }
+        }
+        .user-course-achievement-heading {
+          color: #640032;
+          font-size: 18px;
+          margin-left: 24px;
+          margin-top: 8px;
+        }
+      }
+      .user-course-progress-container {
+        display: flex;
+        flex-direction: row;
+        background-color: #f8f9fa;
+        .user-course-progress-content {
+          margin: 24px;
+          .user-course-progress {
+            display: flex;
+            flex-direction: column;
+            .user-course-progress-heading {
+              color: #640032;
+              font-size: 18px;
+              margin-bottom: 24px;
+            }
+            .user-course-in-progress-card {
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+              margin-bottom: 8px;
+              width: 270px;
+              height: 48px;
+              border-radius: 4px;
+              box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+              border: solid 1px #cccccc;
+              background-color: #ffffff;
+              .user-course-in-progress-content-container:hover {
+                display: flex;
+                .user-course-in-progress-image-container {
+                  .play-image {
+                    width: 33px;
+                    height: 32px;
+                    margin-top: 8px;
+                    border-radius: 100%;
+                    display: initial;
+                    position: relative;
+                  }
+                  .user-course-in-progress-image {
+                    width: 33px;
+                    height: 32px;
+                    margin-top: 8px;
+                    border-radius: 100%;
+                    position: absolute;
+                  }
+                }
+              }
+              .user-course-in-progress-content-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                .user-course-in-progress-image-container {
+                  .play-image {
+                    width: 33px;
+                    height: 32px;
+                    border-radius: 100%;
+                    display: none;
+                  }
+                  .user-course-in-progress-image {
+                    width: 33px;
+                    height: 32px;
+                    border-radius: 100%;
+                    margin-top: 8px;
+                  }
+                }
+                .user-course-in-progress-completion-fraction {
+                  font-size: 10px;
+                  line-height: 10px;
+                  float: right;
+                  margin-left: 10px;
+                  color: #9a9595;
+                }
+                .user-course-in-progress-progressbar {
+                  width: 180px;
+                  border: 1px solid #a9a9a9;
+                  border-radius: 5px;
+                  float: left;
+                }
+                ::ng-deep .progress-bar {
+                  background-color: #80bbdb;
+                }
+                .user-course-in-progress-title {
+                  height: 16px;
+                  text-overflow: ellipsis;
+                  font-size: 12px;
+                  color: #555555;
+                  margin-bottom: 4px;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  width: 160px;
+                  text-align: start;
+                  font-family: SourceSansPro-Light;
+                }
+                .user-course-in-progress-meta {
+                  margin-left: 10px;
+                }
+              }
+            }
+          }
+        }
+        .user-performance-stats-graph-container {
+          margin: 24px;
+          .user-performance-stats-heading {
+            color: #640032;
+            font-size: 18px;
+          }
+          .user-performance-stats-graph {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+            border: solid 1px #cccccc;
+            background-color: #ffffff;
+            margin-top: 10px;
+            margin-bottom: 20;
+            .user-performance-stats-graph-legend {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-evenly;
+              .performance-stats-community-legend {
+                min-width: 8px;
+                min-height: 8px;
+                display: inline-block;
+                border-radius: 50%;
+                background-color: #f5a538;
+              }
+              .performance-stats-user-legend {
+                min-width: 8px;
+                min-height: 8px;
+                display: inline-block;
+                border-radius: 50%;
+                background-color: #af144b;
+              }
+            }
+            .user-performance-stats-graph-labels-container {
+              display: flex;
+              justify-content: space-evenly;
+              .user-performance-stats-graph-iconse:nth-child(1) {
+                margin-left: 24px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.user-profile-image-upload {
+  color: #870a3c;
+  font-size: 12px;
+}
+
+.user-profile-image-upload:hover {
+  color: #870a3c;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+textarea:focus {
+  outline: none !important;
+  border: 2px solid #870a3c;
+}
+
+textarea::placeholder {
+  padding-top: 10px;
+  padding-left: 20px;
+}

@@ -1,0 +1,98 @@
+{
+  "env": {
+    "name": "DEV"
+  },
+  "apiServer": {
+    "root": "http://localhost:3005/api/",
+    "urlRepo": "http://localhost:3005",
+    "course": {
+      "getAllCourses": "http://localhost:3005/api/courses/getAllCourses/",
+      "getAdminCourses": "http://localhost:3005/api/courses/getCoursesbyAuthor/",
+      "getAdminArchivedCourses": "http://localhost:3005/api/courses/getArchivedCoursesbyAuthor/",
+      "getCourse": "http://localhost:3005/api/courses/getCourse/",
+      "addCourse": "http://localhost:3005/api/courses/addCourse/",
+      "editCourse": "http://localhost:3005/api/courses/editCourse/",
+      "archiveCourse": "http://localhost:3005/api/courses/deleteCourse/",
+      "makeCourseActive": "http://localhost:3005/api/courses/undoDeleteCourse/",
+      "rateCourse": "http://localhost:3005/api/courses/rateCourse/",
+      "avarageRating": "http://localhost:3005/api/courses/averageCourseRating/",
+      "getCoursesBySearch": "http://localhost:3005/api/courses/getCoursesBySearch/",
+      "getLatestCourse": "http://localhost:3005/api/courses/getLatestCourse",
+      "getCourseForContinuation": "http://localhost:3005/api/lessons/continueWhereILeftOff",
+      "getCourseIcons": "http://localhost:3005/api/courses/courseIcons",
+      "activateCourse": "http://localhost:3005/api/courses/activateCourse/",
+      "deactivateCourse": "http://localhost:3005/api/courses/deactivateCourse/",
+      "updateCourseFavourite": "http://localhost:3005/api/courses/favourite",
+      "courseCompletion": "http://localhost:3005/api/lessons/completed-course/",
+      "removeCourseFromWatched": "http://localhost:3005/api/courses/removeCourseFromWatched/",
+      "getCourseAnalysis": "http://localhost:3005/api/courses/getCourseStats",
+      "getAllReviews": "http://localhost:3005/api/courses/reviews/"
+    },
+    "quiz": {
+      "postTrueOrFalse": "createTrueOrFalseQuestion",
+      "postMultipleChoice": "createMultipleChoiceQuestion"
+    },
+    "contributor": {
+      "deleteContributor": "http://localhost:3005/api/authors/deleteAuthor/",
+      "addContributor": "http://localhost:3005/api/authors/addAuthorToCourse/"
+    },
+    "tags": {
+      "addTag": "http://localhost:3005/api/tags/addTagToCourse/",
+      "removeTag": "http://localhost:3005/api/tags/deleteTag/"
+    },
+    "lesson": {
+      "addLesson": "http://localhost:3005/api/adminLessons/lesson",
+      "editLesson": "EditLesson",
+      "deleteLesson": "http://localhost:3005/api/lessons/",
+      "fileUploadPath": "http://localhost:3005/api/adminLessons/uploadVideo/",
+      "courseFileUploadPath": "http://localhost:3005/api/adminLessons/courseUploadVideo/",
+      "recordLessonProgress": "http://localhost:3005/api/lessons/",
+      "markLessonCompleted": "http://localhost:3005/api/lessons/complete-lesson/",
+      "orderLesson": "http://localhost:3005/api/lessons/orderlessons",
+      "getCourseLessons": "http://localhost:3005/api/lessons/courseLessons/",
+      "initiateCourse": "http://localhost:3005/api/lessons/initiateCourse/",
+      "loadNextLesson": "http://localhost:3005/api/lessons/loadNextLesson/",
+      "loadPreviousLesson": "http://localhost:3005/api/lessons/loadPreviousLesson/",
+      "getLesson": "http://localhost:3005/api/lessons/getLesson/",
+      "getLessonMarkdown": "http://localhost:3005/api/lessons/lessonMarkDown/"
+    },
+    "bookmark": {
+      "bookmarkLesson": "http://localhost:3005/api/bookmarks/bookmarkLesson/",
+      "getLessonBookmarks": "http://localhost:3005/api/bookmarks/getLessonBookmarks/"
+    },
+    "admin": {
+      "getAdminProfile": "http://localhost:3005/api/admin/profile/",
+      "getAdminSidePanelContent": "http://localhost:3005/api/admin/sidePanelContent/",
+      "adminPersonalInfo": "http://localhost:3005/api/admin/adminPersonalInformation/",
+      "getAllUsers": "http://localhost:3005/api/admin/allUsers/"
+    },
+    "statistics": {
+      "getCourseStatistics": "http://localhost:3005/api/stats/quickstats/",
+      "userCourseStats": "http://localhost:3005/api/admin/userDetailsForCourse/"
+    },
+    "user": {
+      "getUserInfo": "http://localhost:3005/api/index/userInfo/",
+      "userPersonalInfo": "http://localhost:3005/api/index/userPersonalInformation/",
+      "updateUserPersonalInfo": "http://localhost:3005/api/users/updateUserPersonalInfo/",
+      "updateUserPersonalImage": "http://localhost:3005/api/users/updateUserImage/",
+      "requestAdminPrivillege": "http://localhost:3005/api/users/requestAdminPermission/"
+    },
+    "superAdmin": {
+      "userAdminRequestPermissionApproval": "http://localhost:3005/api/superAdmin/userAdminRequestPermissionApproval/",
+      "getSuperAdminViewData": "http://localhost:3005/api/superAdmin/viewData/",
+      "approveAuthorContributionRequest": "http://localhost:3005/api/superAdmin/approveAuthorContributionRequest/"
+    },
+    "courseContributionRequests": {
+      "addContributor": "http://localhost:3005/api/courseContributionRequest/addContributor/",
+      "acceptContributionRequest": "http://localhost:3005/api/courseContributionRequest/acceptContributionRequest/",
+      "rejectContributionRequest": "http://localhost:3005/api/courseContributionRequest/rejectContributionRequest/",
+      "deleteContributionRequestStatus": "http://localhost:3005/api/courseContributionRequest/deleteContributionRequestStatus/"
+    },
+    "notifications": {
+      "getContributionRequsts": "http://localhost:3005/api/notifications/contributionRequests/",
+      "markContributionRequestAsRead": "http://localhost:3005/api/notifications/markContributionRequestsAsRead/",
+      "contributionRequestStatus": "http://localhost:3005/api/notifications/contributionRequestStatus/",
+      "notifications": "http://localhost:3005/api/notifications/notificationCount/"
+    }
+  }
+}

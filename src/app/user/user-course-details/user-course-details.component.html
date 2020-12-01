@@ -1,0 +1,171 @@
+<div class="main-lesson-content-container">
+  <button (click)="scrollTop()" class="scroll-button"><i class="bux-icon bux-chevron-up"></i></button>
+  <div class="side-panel-content-container">
+    <div *ngIf="loadingIndicator === IndicatorState.LOADING">
+      <app-loader></app-loader>
+    </div>
+    <div *ngIf="!course && loadingIndicator === IndicatorState.LOADED" class="left-panel-header-no-content no-content">
+      There's no course content to display...
+    </div>
+    <div *ngIf="course" class="left-panel-header">
+      {{ course.title }}
+    </div>
+
+    <div class="side-panel-content">
+      <app-stepper
+        #verticalStepper
+        class="sticky-sidebar"
+        (loadStep)="stepClicked($event)"
+        (loadSection)="sectionClicked($event)"
+        [currentStep]="currentStep"
+        [steps]="steps"
+      ></app-stepper>
+    </div>
+  </div>
+
+  <div
+    [ngClass]="{
+      'lesson-detail-section-view-width-accomodating-stepper': isSideStepperHidden === false,
+      'lesson-detail-section-full-view-width': isSideStepperHidden === true,
+      'lesson-details-extra-padding':showIntro === false,
+      'course-intro-padding-removal':showIntro=== true
+    }"
+    class="lesson-detail-section"
+  >
+    <span *ngIf="loadingIndicator === IndicatorState.LOADING">
+      <app-loader></app-loader>
+    </span>
+    <div
+      *ngIf="!showIntro && !currentLesson && !currentQuiz && loadingIndicator === IndicatorState.LOADED"
+      class="no-content"
+    >
+      There's no course content to display...
+    </div>
+    <span *ngIf="!showIntro && currentLesson && !currentQuiz">
+      <app-lesson-details
+        (nextClicked)="loadNextLesson()"
+        (lessonCompleted)="activateLessonWithQuizCompletion()"
+        (previousClicked)="loadPreviousLesson()"
+        (hideStepper)="hideStepper()"
+        [lesson]="currentLesson"
+        [isSideStepperHidden]="isSideStepperHidden"
+        [lessonNumber]="currentStep"
+        [isLastLesson]="isLastStep"
+        [lessonHasQuiz]="lessonHasQuizzes"
+        [course]="course"
+        [tags]="tags"
+        [lessonBookMarks]="lessonBookMarks"
+        [startTime]="videoStartTime"
+        [totalLessons]="totalLessons"
+        [completedLessons]="completedLessons"
+        [currentLessonNumber]="currentLessonNumber"
+      ></app-lesson-details>
+    </span>
+
+    <span *ngIf="currentQuiz">
+      <app-quiz-details
+        (nextClicked)="loadNextLesson()"
+        (previousClicked)="loadPreviousLesson()"
+        [quiz]="currentQuiz"
+        [quizItem]="quizMarker"
+        [course]="course"
+        [hideNext]="hideNext"
+        [courseIsComplete]="completedCourse"
+      ></app-quiz-details>
+    </span>
+
+    <span *ngIf="showIntro">
+      <div class="course-intro">
+        <div class="lower-course-intro-information">
+          <div class="course-author-information-and-audience-pre-requisites-container">
+            <div class="audience-pre-requisites-and-course-details-container">
+              <div class="course-title-and-image-container">
+                <div class="course-image"><img class="course-image" [src]="course.image" /></div>
+                <div class="course-title-container">
+                  <div class="course-title">{{ course.title }}</div>
+                  <div class="course-author-name" *ngFor="let author of course.authors">
+                    a Manabu course by {{ author.name }} {{ author.surname }}
+                  </div>
+                </div>
+              </div>
+
+              <div [ngClass]="{ 'hide-tags-container': tags.length === 0, 'tags-container': tags.length > 0 }">
+                Related topics :
+                <span *ngFor="let tag of tags">
+                  <span class="tag">{{ tag.label | uppercase }}</span>
+                </span>
+              </div>
+
+              <div class="course-duration-and-initiation-container">
+                <div class="course-duration">
+                  <span class="section-header">Course Duration :</span> {{ courseDuration.time }}
+                  {{ courseDuration.unit }}
+                </div>
+                <div class="course-initiation-button-container">
+                  <button class="btn btn-primary btn-lesson-next" (click)="startCourse(course.id)">Get Started!</button>
+                </div>
+              </div>
+
+              <div *ngIf="course.description !== ''" class="course-description-container">
+                <span class="section-header">Course description:</span>
+                <div class="course-description-content" [innerHTML]="course.description"></div>
+              </div>
+
+              <div
+                *ngIf="course.courseAudience !== '' || course.coursePreRequisites !== ''"
+                class="audience-pre-requisites-container"
+              >
+                <div *ngIf="course.courseAudience !== ''" class="audience-content-container">
+                  <span class="section-header">Audience:</span>
+                  <span class="audience-content">{{ course.courseAudience }}</span>
+                </div>
+                <div *ngIf="course.coursePreRequisites !== ''" class="pre-requisites-content-container">
+                  <span class="section-header">Pre-Requisites:</span>
+                  <span class="pre-requisites-content">{{ course.coursePreRequisites }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="author-information-container" *ngFor="let author of course.authors">
+              <div class="author-name-and-image-container">
+                <span class="image-container">
+                  <div *ngIf="author.image === ''" [attr.data-initials]="[author.initials]"></div>
+                  <img *ngIf="author.image !== ''" [src]="author.image" class="admin-profile-image" />
+                </span>
+                <span class="author-name-container">{{ author.name }} {{ author.surname }}</span>
+              </div>
+
+              <div class="author-email-container">
+                {{ author.email }}
+              </div>
+
+              <a
+                *ngIf="author.profileUrlLink !== ''"
+                [href]="[author.profileUrlLink]"
+                class="author-linkedin-account-container"
+              >
+                {{ author.profileUrlLink }}
+              </a>
+
+              <div *ngIf="author.aboutAuthor !== ''" class="about-author-container">
+                <div class="section-header">About the author:</div>
+                <div class="about-author-content">
+                  {{ author.aboutAuthor }}
+                </div>
+              </div>
+
+              <div *ngIf="coursesByAuthor.length !== 0" class="other-courses-by-author-container">
+                <span class="section-header">Other courses by {{ author.name }}:</span>
+                <div class="other-courses-by-author-container-image-container">
+                  <span *ngFor="let course of coursesByAuthor">
+                    <img class="other-courses-by-author-image" [src]="course.image"
+                  /></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>

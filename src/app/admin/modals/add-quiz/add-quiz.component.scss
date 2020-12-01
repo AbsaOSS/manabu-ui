@@ -1,0 +1,110 @@
+.add-tags-modal,
+.download-modal,
+.contributor-modal,
+.delete-lesson-modal .quiz-modal,
+.course-lesson-modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.answer-multiple {
+  margin: 12px 0px;
+}
+.action-options {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.body-text {
+  font-size: 16px;
+  color: #787272;
+  text-align: center;
+}
+
+.lesson-type-options {
+  margin-top: 4px;
+  margin-bottom: 16px;
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+}
+
+.multi-option {
+  padding-left: 8px;
+}
+
+.is-invalid {
+  border: 1px solid red;
+}
+
+.label-select {
+  color: hsl(0, 0%, 65%);
+  margin-top: 8px;
+}
+
+.label-quiz {
+  margin-bottom: 12px;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  background: #fff;
+  border: 1px solid #870a3c;
+  background-image: none;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: flex;
+  height: 24px;
+  line-height: 1;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: 0.25em;
+}
+select {
+  flex: 1;
+  padding: 0 0.5em;
+  cursor: pointer;
+}
+/* Arrow */
+.select::after {
+  font-family: ToolIconsRegularFont;
+  content: '\E632';
+  font-size: 24px;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #870a3c;
+  cursor: pointer;
+  pointer-events: none;
+  transition: 0.25s all ease;
+  border: 1px solid #870a3c;
+  height: 24px;
+}
+
+/* Transition */
+.select:hover::after {
+  color: #fff;
+}
+
+.quiz-type-container {
+  margin: 12px 0px;
+}
+
+.multi-option {
+  margin-bottom: 12px;
+}
+
+.modal-course-title {
+  color: #b5b2b2;
+}

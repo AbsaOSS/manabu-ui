@@ -1,0 +1,9 @@
+<div class="container">
+    <div *ngIf="courses && courses.length === 0" class="no-content">
+        <p>To get started click 'Add a New Course' above</p>
+    </div>
+    <span *ngIf="loadingIndicator === IndicatorState.LOADING">
+    <app-loader></app-loader>
+  </span>
+    <app-courses [courses]="courses" [loadingIndicator]="loadingIndicator" (callRefresh)="refreshCourse($event)"></app-courses>
+</div>

@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <button type="button" class="close" (click)="closeModal()"></button>
+</div>
+<div class="modal-body">
+  <div class="user-profile-image-container">
+    <img
+      *ngIf="imageLink !== undefined && loadingIndicator !== IndicatorState.LOADING"
+      class="user-profile-image"
+      [src]="imageLink"
+    />
+    <span *ngIf="loadingIndicator === IndicatorState.LOADING">
+      <app-loader></app-loader>
+    </span>
+  </div>
+  <div class="file-field input-field">
+    <div class="btn btn-primary">
+      <span>Upload</span>
+      <input
+        class="form-control"
+        #fileInput
+        type="file"
+        ng2FileSelect
+        [uploader]="imageUploader"
+        (change)="onFileSelected($event)"
+      />
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" [(ngModel)]="imageName" type="text" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 action-options">
+      <button class="btn btn-secondary btn-md float-left" (click)="activeModal.dismiss()">Cancel</button>
+      <button class="btn btn-primary btn-md float-right" (click)="uploadImage()">Update</button>
+    </div>
+  </div>
+</div>

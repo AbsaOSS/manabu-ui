@@ -1,0 +1,9 @@
+.add-tags-modal {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .action-options {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  
